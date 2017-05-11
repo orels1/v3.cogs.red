@@ -1,0 +1,50 @@
+[
+  {
+    "type": "pug@2.0.0-rc.1::map::minify",
+    "inputSha": [
+      {
+        "file": "index.pug",
+        "sha": "b1ea44c2341bbb6864e8996f49d79f1da09936b1"
+      }
+    ],
+    "outputSha": "d4f9300ba2aea79be6e3996218189162ac3f8097",
+    "input": "index.pug",
+    "output": [
+      "index.html"
+    ]
+  },
+  {
+    "type": "babel-core@6.24.1::map::minify",
+    "inputSha": [
+      {
+        "file": "scripts\\main.babel.js",
+        "sha": "b23c609faeb8e2e4e4c09b3bb23ad52f55b70dc1"
+      }
+    ],
+    "outputSha": "1aedba344b0c764bca157c71b9ca0fd61ba3ef40",
+    "input": "scripts\\main.babel.js",
+    "output": [
+      "scripts\\main.js.map",
+      "scripts\\main.js"
+    ]
+  },
+  {
+    "type": "node-sass@4.5.2::map::minify",
+    "inputSha": [
+      {
+        "file": "styles\\main.sass",
+        "sha": "d5c66e8da0f342ac749aa290441032f0c279c429"
+      },
+      {
+        "file": "styles\\main.sass",
+        "sha": "d5c66e8da0f342ac749aa290441032f0c279c429"
+      }
+    ],
+    "outputSha": "cfc941f9288a78a8a894253c86f8db0d4a3cbd0c",
+    "input": "styles\\main.sass",
+    "output": [
+      "styles\\main.css.map",
+      "styles\\main.css"
+    ]
+  }
+]

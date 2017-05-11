@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,700,900')
+
+$bg: #21252B
+$red: #F22020
+$red-shadow: rgba(242,31,31,0.4)
+
+a, a:hover, a:active, a:visited
+  color: #fff
+  text-decoration: none
+
+html, body, .container
+  min-height: 100vh
+
+body
+  background: $bg
+  font-family: 'Lato', sans-serif
+  margin: 0
+
+.container
+  background: url('../img/bg.png') center center no-repeat
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  @media (max-width: 750px)
+    background-size: 180%
+
+.red
+  font-size: 100px
+  font-weight: 900
+  color: $red
+  text-shadow: 0 3px 0 $red-shadow
+  @media (max-width: 750px)
+    font-size: 50px
+
+.description
+  font-size: 40px
+  font-weight: 300
+  color: #FFFFFF
+  margin-top: 30px
+  @media (max-width: 750px)
+    font-size: 20px
+    margin-top: 10px
+
+.button
+  min-width: 350px
+  margin-top: 30px
+  padding: 0 30px
+  position: relative
+  top: 0
+  line-height: 75px
+  background: $red
+  border-radius: 100px
+  box-shadow: 0 10px 36px $red-shadow
+  font-size: 30px
+  font-weight: 700
+  color: #fff
+  text-transform: uppercase
+  text-align: center
+  transition: top 200ms ease-in-out, box-shadow 200ms ease-in-out
+  @media (max-width: 750px)
+    font-size: 18px
+    line-height: 40px
+    min-width: 200px
+    margin-top: 20px
+
+  &:hover
+    top: -10px
+    box-shadow: 0 20px 36px $red-shadow

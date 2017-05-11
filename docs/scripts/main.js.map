@@ -1,0 +1,1 @@
+{"version":3,"sources":["main.babel.js"],"names":["helloWorld","console","log"],"mappings":"YAAA,IAAMA,YAAa,WAAA,MAAMC,SAAQC,IAAI,eAErCF","file":"main.babel.js","sourcesContent":["const helloWorld = () => console.log('Hello World');\n\nhelloWorld();\n"]}
