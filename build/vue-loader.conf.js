@@ -19,6 +19,6 @@ module.exports = {
     image: 'xlink:href'
   },
   cssModules: {
-    localIdentName: '[name]_[hash:base64:5]'
+    localIdentName: '[name]_[local]_[hash:base64:5]'
   }
 }
