@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Cogs from '@/components/Cogs';
+import About from '@/components/About';
 
 Vue.use(Router);
 
@@ -11,6 +12,11 @@ export default new Router({
       path: '/',
       name: 'Cogs',
       component: Cogs,
+    },
+    {
+      path: '/about',
+      name: 'About',
+      component: About,
     },
   ],
 });

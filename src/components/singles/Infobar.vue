@@ -19,7 +19,7 @@ import Component from 'vue-class-component';
 })
 export default class Infobar extends Vue {
   get sidebarType() {
-    return this.type ? this.$style.default : this.$style[this.type];
+    return this.type ? this.$style[this.type] : this.$style.default;
   }
 }
 </script>
