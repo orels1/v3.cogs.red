@@ -36,6 +36,9 @@ export default class Navbar extends Vue {
 </script>
 
 <style lang="sass" module>
+$red: rgb(236,0,26)
+$grey: rgb(114,114,114)
+
 .Navbar
   display: flex
   justify-content: space-between
@@ -66,8 +69,14 @@ export default class Navbar extends Vue {
 .link
   line-height: 50px
   padding: 0 20px
+  text-transform: uppercase
   text-decoration: none
+  color: $grey
+  transition: color 150ms ease
+
+  &:hover
+    color: $red
 
 .active
-  font-weight: bold
+  color: $red
 </style>
