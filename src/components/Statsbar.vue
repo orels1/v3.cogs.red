@@ -42,6 +42,7 @@ export default class Statsbar extends Vue {
 $blueish: rgba(34,37,42,1)
 $white: #fcfcfc
 $mobile: 767px
+$desktop: 768px
 
 .Statsbar
   background: $blueish
@@ -56,6 +57,9 @@ $mobile: 767px
   display: grid
   grid-template-columns: .5fr repeat(3, 1fr)
   grid-template-rows: repeat(2, 100px)
+  @media (max-width: $mobile)
+    grid-template-columns: 1fr 1fr
+    grid-template-rows: 100px repeat(3, 210px)
   grid-gap: 10px 20px
   padding: 0 20px
 
@@ -67,11 +71,17 @@ $mobile: 767px
 .bottom_left
   grid-column-start: 1
   grid-row-start: 2
+  @media (max-width: $mobile)
+    grid-column-start: 2
+    grid-row-start: 1
 
 .double_height
-  grid-row-start: 1
-  grid-row-end: span 2
-
+  @media (max-width: $mobile)
+    grid-column-end: span 2
+  @media (min-width: $desktop)
+    grid-row-start: 1
+    grid-row-end: span 2
+  
 .number_block
   color: $white
   display: flex
