@@ -15,6 +15,8 @@
         :class="$style.link"
         :active-class="$style.active"
         :to="item.to"
+        :target="item.external ? '_blank' : ''"
+        :href="item.external ? item.to : undefined"
         exact
       ) {{ item.name }}
 </template>
@@ -29,6 +31,7 @@ export default class Navbar extends Vue {
     { to: '/', key: 'cogs', name: 'Cogs' },
     { to: '/about', key: 'about', name: 'About' },
     { to: '/tags', key: 'tags', name: 'Tags' },
+    { to: 'https://discord.gg/red', key: 'community', name: 'Community', external: true },
   ];
 
   search = '';
@@ -36,6 +39,7 @@ export default class Navbar extends Vue {
 </script>
 
 <style lang="sass" module>
+$mobile: 767px
 $red: rgb(236,0,26)
 $grey: rgb(114,114,114)
 
@@ -43,6 +47,8 @@ $grey: rgb(114,114,114)
   display: flex
   justify-content: space-between
   box-shadow: 0 0 10px rgba(0,0,0,.1)
+  @media (max-width: $mobile)
+    flex-direction: column
 
 .logo
   width: 100px
@@ -51,6 +57,8 @@ $grey: rgb(114,114,114)
   padding: 0 20px
 
 .search
+  @media (max-width: $mobile)
+    width: 100%
 
 .search_input
   border: none
@@ -59,12 +67,17 @@ $grey: rgb(114,114,114)
   min-width: 300px
   outline: none !important
   padding: 0 10px
+  @media (max-width: $mobile)
+    width: 100%
+    padding: 0 20px
 
   &:focus
     border-bottom: 1px solid rgba(0,0,0,.1)
 
 .links
   display: flex
+  @media (max-width: $mobile)
+    flex-direction: column
 
 .link
   line-height: 50px
