@@ -1,6 +1,9 @@
 dist: trusty
-language: javascript
+language: node_js
+version:
+  - 8
 install:
+  - npm install node -g
   - yarn install
 script:
   - yarn lint
