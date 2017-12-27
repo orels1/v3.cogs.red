@@ -36,6 +36,7 @@ export default class Cogs extends Vue {
 
 <style lang="sass" module>
 $mobile: 767px
+$tiny: 440px
 
 .Cogs
   color: #000
@@ -52,5 +53,7 @@ $mobile: 767px
   grid-template: 130px / repeat(3, 1fr)
   @media (max-width: $mobile)
     grid-template: 130px / repeat(2, 1fr)
+  @media (max-width: $tiny)
+    grid-template: 130px / repeat(1, 1fr)
   grid-gap: 10px 20px
 </style>
