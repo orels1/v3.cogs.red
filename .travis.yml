@@ -1,0 +1,11 @@
+dist: trusty
+language: javascript
+install:
+  - yarn install
+script:
+  - yarn lint
+  - yarn test
+  - yarn build
+cache: yarn
+notifications:
+  emails: false
