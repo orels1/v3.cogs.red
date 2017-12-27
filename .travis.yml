@@ -11,3 +11,10 @@ script:
 cache: yarn
 notifications:
   emails: false
+branches:
+  only:
+    - master
+    - develop
+    - \release\/*\
+    - \feature\/*\
+    - \hotfix\/*\
