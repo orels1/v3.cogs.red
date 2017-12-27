@@ -1,6 +1,10 @@
-# upd.v3.cogs.red
+# v3.cogs.red
 
 > v3 frontend for cogs.red
+
+## Contribution
+
+If you're willing to help with the development, there should always be some issues that are good for first time contributions. Check the [**"contributions are welcome"**](https://github.com/orels1/v3.cogs.red/issues?q=is%3Aopen+is%3Aissue+label%3A%22contributions+are+welcome%22) tag!
 
 ## Build Setup
 

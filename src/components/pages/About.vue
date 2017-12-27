@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(:class="$style.About")
+  div(:class="$style.AboutPage")
     AboutTitle About Red
     p Red is an open source project...
     AboutTitle About Cogs
@@ -24,13 +24,13 @@ import Badge from '@/components/singles/Badge';
     Badge,
   },
 })
-export default class About extends Vue {
+export default class AboutPage extends Vue {
 
 }
 </script>
 
 <style lang="sass" module>
-.About
+.AboutPage
   color: #000
   max-width: 1200px
   padding: 0 20px
