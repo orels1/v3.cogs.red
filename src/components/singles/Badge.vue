@@ -27,7 +27,7 @@ export default class Badge extends Vue {
   padding: 0 10px
   font-size: 10px
   color: #fff
-  background-color: #2ecc71
+  background-color: #25a85c
 </style>
 
 

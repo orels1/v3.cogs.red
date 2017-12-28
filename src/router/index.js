@@ -20,9 +20,18 @@ export default new Router({
       component: About,
     },
     {
-      path: '/:user/:repo/:cog',
+      path: '/cogs/:user/:repo/:cog',
       name: 'CogPage',
       component: CogPage,
+    },
+    {
+      path: '/cogs',
+      redirect: '/',
+      exact: true,
+    },
+    {
+      path: '*', // 404
+      redirect: '/',
     },
   ],
 });

@@ -1,26 +1,52 @@
 <template lang="pug">
   div(:class="$style.Cogbar")
     div(:class="$style.Cogbar_inner")
-      div(:class="$style.breadcrumbs")
-        div(
-          v-for="(path, index) in $route.path.split('/').slice(1)"
-          :key="path"
-          :class="$style.crumb"
-        )
-          router-link(
-            :class="$style.crumb_link"
-            :to="'/' + $route.path.split('/').slice(1, index + 2).join('/')"
-          ) {{path}}
+      div(:class="$style.header")
+        div(:class="$style.breadcrumbs")
+          div(
+            v-for="(path, index) in $route.path.split('/').slice(1, 4)"
+            :key="path"
+            :class="$style.crumb"
+          )
+            router-link(
+              :class="$style.crumb_link"
+              :to="'/' + $route.path.split('/').slice(1, index + 2).join('/')"
+            ) {{path}}
+        Badge(:class="$style.type" :type="cog.type")
       div(:class="$style.infoblock")
         div(:class="$style.title") {{$route.params.cog}}
+        div(:class="$style.tags")
+          div(
+            :class="$style.tag"
+            v-for="tag in cog.tags.slice(0, 3)"
+            :key="tag"
+          )
+            router-link(
+              :class="$style.tag_link"
+              :to="'/tags/' + tag"
+            ) {{tag}}
     
 </template>
 
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import Badge from '@/components/singles/Badge';
 
-@Component
+@Component({
+  components: {
+    Badge,
+  },
+  props: {
+    cog: {
+      type: Object,
+      default: () => ({
+        type: 'approved',
+        tags: ['utils', 'tools', 'dictionary', 'test'],
+      }),
+    },
+  },
+})
 export default class Cogbar extends Vue {
 }
 </script>
@@ -43,11 +69,21 @@ $desktop: 768px
   max-width: 1200px
   display: grid
   grid-template: 30px 70px / 1fr
+  @media (max-width: $mobile)
+    grid-template: 1fr / 1fr
   grid-gap: 10px 20px
   padding: 0 20px
 
+.header
+  display: flex
+  justify-content: flex-start
+  align-items: flex-start
+  @media (max-width: $mobile)
+    flex-direction: column
+
 .breadcrumbs
   display: flex
+  flex-wrap: wrap
 
 .crumb
   color: rgba(#fff, .6)
@@ -75,6 +111,13 @@ $desktop: 768px
 
 .infoblock
   display: flex
+  justify-content: space-between
+  align-items: center
+  flex-wrap: wrap
+  @media (max-width: $mobile)
+    flex-direction: column
+    justify-content: flex-start
+    align-items: flex-start
 
 .title
   color: $white
@@ -82,4 +125,27 @@ $desktop: 768px
   line-height: 70px
   text-transform: lowercase
   font-weight: 600
+
+.type
+  @media (min-width: $desktop)
+    margin-left: 20px
+    align-self: center
+    position: relative
+    top: -1px
+  @media (max-width: $mobile)
+    margin-top: 10px
+
+.tags
+  display: flex
+
+.tag
+  margin: 0 5px
+
+.tag_link
+  color: rgba(#fff, .6)
+  text-decoration: none
+  transition: color 150ms ease
+
+  &:hover
+    color: rgba(#fff, 1)
 </style>

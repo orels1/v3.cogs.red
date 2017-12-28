@@ -59,6 +59,7 @@ $grey: rgb(114,114,114)
 .search
   @media (max-width: $mobile)
     width: 100%
+    display: none
 
 .search_input
   border: none
@@ -78,6 +79,7 @@ $grey: rgb(114,114,114)
   display: flex
   @media (max-width: $mobile)
     flex-direction: column
+    display: none
 
 .link
   line-height: 50px
