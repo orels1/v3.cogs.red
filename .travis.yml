@@ -1,20 +1,20 @@
 dist: trusty
+branches:
+  only:
+  - master
+  - develop
+  - /^[Rr]elease\/(.*)/
+  - /^[Ff]eature\/(.*)/
+  - /^[Hh]otfix\/(.*)/
 language: node_js
 node_js:
-  - 9.2
-install:
-  - yarn install
-script:
-  - yarn lint
-  - yarn test
-  - yarn build
+- 9.2
 cache: yarn
 notifications:
   emails: false
-branches:
-  only:
-    - master
-    - develop
-    - \[Rr]elease\/(.*)\
-    - \[Ff]eature\/(.*)\
-    - \[Hh]otfix\/(.*)\
+install:
+- yarn install
+script:
+- yarn lint
+- yarn test
+- yarn build
