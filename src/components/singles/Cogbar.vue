@@ -16,6 +16,10 @@
       div(:class="$style.infoblock")
         div(:class="$style.title") {{$route.params.cog}}
         div(:class="$style.tags")
+          FontAwesomeIcon(
+            :class="$style.tags_icon"
+            :icon="tagsIcon"
+          )
           div(
             :class="$style.tag"
             v-for="tag in cog.tags.slice(0, 3)"
@@ -32,10 +36,13 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import Badge from '@/components/singles/Badge';
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome';
+import faTags from '@fortawesome/fontawesome-pro-light/faTags';
 
 @Component({
   components: {
     Badge,
+    FontAwesomeIcon,
   },
   props: {
     cog: {
@@ -48,6 +55,7 @@ import Badge from '@/components/singles/Badge';
   },
 })
 export default class Cogbar extends Vue {
+  tagsIcon = faTags;
 }
 </script>
 
@@ -138,8 +146,20 @@ $desktop: 768px
 .tags
   display: flex
 
+.tags_icon
+  color: rgba(#fff, .6)
+  align-self: center
+  margin: 0 5px 0 0
+
 .tag
   margin: 0 5px
+
+  &:after
+    content: ','
+    color: rgba(#fff, .6)
+
+  &:last-child:after
+    display: none
 
 .tag_link
   color: rgba(#fff, .6)

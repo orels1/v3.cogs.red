@@ -2,6 +2,18 @@
 # yarn lockfile v1
 
 
+"@fortawesome/fontawesome-pro-light@^5.0.2":
+  version "5.0.2"
+  resolved "https://npm.fontawesome.com/646DC458-0892-48BE-9039-96A247C8FB0B/@fortawesome/fontawesome-pro-light/-/fontawesome-pro-light-5.0.2.tgz#9b3316ef2150ac8bc2ae050989840a958e2da7a6"
+
+"@fortawesome/fontawesome@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome/-/fontawesome-1.1.0.tgz#2a949fa46d96e41092e67218b42579f8e54c7b7f"
+
+"@fortawesome/vue-fontawesome@^0.0.22":
+  version "0.0.22"
+  resolved "https://registry.yarnpkg.com/@fortawesome/vue-fontawesome/-/vue-fontawesome-0.0.22.tgz#720457bda0e5866265e5e0f8fe4fbd857fa5653f"
+
 "@types/strip-bom@^3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/strip-bom/-/strip-bom-3.0.0.tgz#14a8ec3956c2e81edb7520790aecf21c290aebd2"

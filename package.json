@@ -13,6 +13,9 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.0",
+    "@fortawesome/fontawesome-pro-light": "^5.0.2",
+    "@fortawesome/vue-fontawesome": "^0.0.22",
     "vue": "^2.5.2",
     "vue-class-component": "^6.1.2",
     "vue-router": "^3.0.1"

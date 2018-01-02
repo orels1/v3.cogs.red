@@ -11,6 +11,9 @@
       CogTitle Installation
       p(:class="$style.text").
         Replace [p] with your bot's prefix and use these commands
+      CodeBlock(:code="repoAddLine")
+      br
+      CodeBlock(:code="cogAddLine")
       CogTitle Readme
       p(:class="$style.text").
         This is the cog to interact with Cogs.Red
@@ -22,21 +25,30 @@ import Component from 'vue-class-component';
 import Infobar from '@/components/singles/Infobar';
 import Title from '@/components/singles/Title';
 import Cogbar from '@/components/singles/Cogbar';
+import CodeBlock from '@/components/singles/CodeBlock';
 
 @Component({
   components: {
     Infobar,
     CogTitle: Title,
     Cogbar,
+    CodeBlock,
   },
 })
 export default class CogPage extends Vue {
+  get repoAddLine() {
+    return `[p] cog repo add ${this.$route.params.repo} https://github.com/${this.$route.params.user}/${this.$route.params.repo}`;
+  }
 
+  get cogAddLine() {
+    return `[p] cog install ${this.$route.params.repo} ${this.$route.params.cog}`;
+  }
 }
 </script>
 
 <style lang="sass" module>
 $darkish: rgba(#000, .7)
+$white: #fcfcfc
 
 .CogPage
   color: #000
