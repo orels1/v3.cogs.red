@@ -1,22 +1,26 @@
 <template lang="pug">
   div(:class="$style.CogPage")
-    Cogbar
+    Cogbar(:cog="cog")
     div(:class="$style.CogPage_inner")
-      Infobar(type="danger" title="Use at your own risk!") This is a cog from unapproved repository...
+      Infobar(
+        v-if="cog.repo.type === 'unapproved'"
+        type="danger"
+        title="Use at your own risk!"
+      ).
+        This is a cog from an unapproved repo, 
+        it was not checked by members of either Red-DiscordBot or Cogs-Support staff 
+        and it can contain anything.
       CogTitle Description
-      p(:class="$style.text").
-        Cog for interaction with Cogs.Red#[br]#[br]
-        Commands:#[br]
-        [p]redportal search #{'<search_term>'} - searches through cogs listed on cogs.red (alias - redp)
+      VueMarkdown(:class="$style.text" :source="cog.description")
       CogTitle Installation
       p(:class="$style.text").
         Replace [p] with your bot's prefix and use these commands
       CodeBlock(:code="repoAddLine")
       br
       CodeBlock(:code="cogAddLine")
-      CogTitle Readme
-      p(:class="$style.text").
-        This is the cog to interact with Cogs.Red
+      div(v-if="cog.readme")
+        CogTitle Readme
+        p(:class="$style.text") {{cog.readme}}
 </template>
 
 <script>
@@ -26,6 +30,9 @@ import Infobar from '@/components/singles/Infobar';
 import Title from '@/components/singles/Title';
 import Cogbar from '@/components/singles/Cogbar';
 import CodeBlock from '@/components/singles/CodeBlock';
+import VueMarkdown from 'vue-markdown';
+
+const API = 'https://cogs.red/api/v1/cogs/';
 
 @Component({
   components: {
@@ -33,9 +40,14 @@ import CodeBlock from '@/components/singles/CodeBlock';
     CogTitle: Title,
     Cogbar,
     CodeBlock,
+    VueMarkdown,
   },
 })
 export default class CogPage extends Vue {
+  loaded = false;
+  error = null;
+  cog = {};
+
   get repoAddLine() {
     return `[p] cog repo add ${this.$route.params.repo} https://github.com/${this.$route.params.user}/${this.$route.params.repo}`;
   }
@@ -43,22 +55,45 @@ export default class CogPage extends Vue {
   get cogAddLine() {
     return `[p] cog install ${this.$route.params.repo} ${this.$route.params.cog}`;
   }
+
+  async created() {
+    const params = this.$route.params;
+    // Fetching remote data
+    try {
+      const resp = await fetch(`${API}${params.user}/${params.repo}/${params.cog}`);
+      const json = await resp.json();
+      this.cog = json.results;
+      this.loaded = true;
+    } catch (e) {
+      this.error = e;
+    }
+  }
 }
 </script>
 
 <style lang="sass" module>
 $darkish: rgba(#000, .7)
 $white: #fcfcfc
+$lred: #D5413E
 
 .CogPage
   color: #000
 
 .CogPage_inner
-  max-width: 1200px
+  max-width: 1000px
   padding: 0 20px
   margin: 0 auto
 
 .text
   color: $darkish
+
+  a
+    color: $lred
+    text-decoration: underline
+    text-decoration-color: rgba($lred, 0)
+    transition: text-decoration-color 150ms ease
+
+    &:hover
+      text-decoration-color: rgba($lred, .8)
 </style>
 

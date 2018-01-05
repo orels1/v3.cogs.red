@@ -53,7 +53,7 @@ $desktop: 768px
 
 .Statsbar_inner
   width: 100%
-  max-width: 1200px
+  max-width: 1000px
   display: grid
   grid-template-columns: .5fr repeat(3, 1fr)
   grid-template-rows: repeat(2, 100px)

@@ -28,7 +28,7 @@ export default class Cog extends Vue {
   author = 'Redjumpman';
   type = 'approved';
   links = {
-    self: '/cogs/orels1/ORELS-Cogs/language',
+    self: '/cogs/orels1/ORELS-Cogs/steam',
   };
 }
 </script>

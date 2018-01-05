@@ -6,7 +6,7 @@ import CogPage from '@/components/pages/CogPage';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -23,6 +23,9 @@ export default new Router({
       path: '/cogs/:user/:repo/:cog',
       name: 'CogPage',
       component: CogPage,
+      meta: {
+        title: route => `${route.params.cog} by ${route.params.user} | v3.cogs.red`,
+      },
     },
     {
       path: '/cogs',
@@ -35,3 +38,10 @@ export default new Router({
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  document.title = (to.meta && to.meta.title && to.meta.title(to)) || `${to.name} | v3.cogs.red`;
+  next();
+});
+
+export default router;

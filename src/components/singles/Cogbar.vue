@@ -12,10 +12,10 @@
               :class="$style.crumb_link"
               :to="'/' + $route.path.split('/').slice(1, index + 2).join('/')"
             ) {{path}}
-        Badge(:class="$style.type" :type="cog.type")
+        Badge(:class="$style.type" :type="cog.repo.type")
       div(:class="$style.infoblock")
         div(:class="$style.title") {{$route.params.cog}}
-        div(:class="$style.tags")
+        div(:class="$style.tags" v-if="cog.tags.length > 0")
           FontAwesomeIcon(
             :class="$style.tags_icon"
             :icon="tagsIcon"
@@ -48,7 +48,9 @@ import faTags from '@fortawesome/fontawesome-pro-light/faTags';
     cog: {
       type: Object,
       default: () => ({
-        type: 'approved',
+        repo: {
+          type: 'approved',
+        },
         tags: ['utils', 'tools', 'dictionary', 'test'],
       }),
     },
@@ -74,7 +76,7 @@ $desktop: 768px
 
 .Cogbar_inner
   width: 100%
-  max-width: 1200px
+  max-width: 1000px
   display: grid
   grid-template: 30px 70px / 1fr
   @media (max-width: $mobile)
