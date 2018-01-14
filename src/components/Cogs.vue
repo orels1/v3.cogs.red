@@ -7,17 +7,20 @@
         br
         |The author of Red and the contributors are not responsible for any damage caused by 3rd party cogs.
       CogsTitle New & Updated Cogs
-      div(:class="$style.list")
-        Cog(v-for="cog in cogs" :key="cog")
+      pre(v-show="!loaded") loading....
+      div(:class="$style.list" v-if="loaded")
+        Cog(v-for="cog in cogs" :key="cog" :cog="cog")
 </template>
 
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import sortBy from 'lodash/sortBy';
 import Statsbar from '@/components/Statsbar';
 import Infobar from '@/components/singles/Infobar';
 import Title from '@/components/singles/Title';
 import Cog from '@/components/singles/Cog';
+import c from '@/constants';
 
 @Component({
   components: {
@@ -28,9 +31,20 @@ import Cog from '@/components/singles/Cog';
   },
 })
 export default class Cogs extends Vue {
-  cogs = [
-    'first', 'second', 'third', 'fourth', 'fith',
-  ]
+  cogs = [];
+  loaded = false;
+
+  async created() {
+    try {
+      const resp = await fetch(c.COGS);
+      const json = await resp.json();
+      const sorted = sortBy(json.results.list, i => i.repo.type);
+      this.cogs = sorted.slice(0, 30);
+      this.loaded = true;
+    } catch (e) {
+      this.error = e;
+    }
+  }
 }
 </script>
 

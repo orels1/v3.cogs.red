@@ -3,8 +3,8 @@
     Cogbar(:cog="cog")
     div(:class="$style.CogPage_inner")
       Infobar(
-        v-if="cog.repo.type === 'unapproved'"
-        type="danger"
+        v-if="cog.repo && cog.repo.type === 'unapproved'"
+        level="danger"
         title="Use at your own risk!"
       ).
         This is a cog from an unapproved repo, 
@@ -31,8 +31,7 @@ import Title from '@/components/singles/Title';
 import Cogbar from '@/components/singles/Cogbar';
 import CodeBlock from '@/components/singles/CodeBlock';
 import VueMarkdown from 'vue-markdown';
-
-const API = 'https://cogs.red/api/v1/cogs/';
+import c from '@/constants';
 
 @Component({
   components: {
@@ -60,7 +59,7 @@ export default class CogPage extends Vue {
     const params = this.$route.params;
     // Fetching remote data
     try {
-      const resp = await fetch(`${API}${params.user}/${params.repo}/${params.cog}`);
+      const resp = await fetch(`${c.COGS}/${params.user}/${params.repo}/${params.cog}`);
       const json = await resp.json();
       this.cog = json.results;
       this.loaded = true;
