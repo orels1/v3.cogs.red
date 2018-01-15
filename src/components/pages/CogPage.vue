@@ -21,6 +21,9 @@
       div(v-if="cog.readme")
         CogTitle Readme
         p(:class="$style.text") {{cog.readme}}
+      CogTitle Source
+      p(:class="$style.text").
+        If you're interested in how this cog works, you can #[a(:href='cog.links.github.self' target="_blank") look at the source].
 </template>
 
 <script>
