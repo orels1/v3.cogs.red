@@ -1,17 +1,21 @@
 <template lang="pug">
   #app
-    navbar
-    router-view
+    div
+      Navbar
+      router-view
+    Footer
 </template>
 
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/singles/Footer';
 
 @Component({
   components: {
-    navbar: Navbar,
+    Navbar,
+    Footer,
   },
 })
 export default class App extends Vue {
@@ -27,4 +31,8 @@ body
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
   color: #2c3e50
+  min-height: 100vh
+  display: flex
+  flex-direction: column
+  justify-content: space-between
 </style>

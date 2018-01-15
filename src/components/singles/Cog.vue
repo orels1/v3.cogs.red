@@ -1,12 +1,13 @@
 <template lang="pug">
-  router-link(:class="$style.Cog" :to="{ path: cog.links.self }" append)
-    div(:class="$style.name") {{ cog.name }}
-    div(:class="$style.description") {{ cog.short }}
-    div(:class="$style.tags")
-      div(:class="$style.tag" v-for="tag in cog.tags") \#{{ tag }}
-    div(:class="$style.info")
-      div(:class="$style.author") {{ cog.author.username }}
-      Badge(:class="$style.type" :type="cog.repo.type")
+  transition(enter-active-class="animated fadeInUp")
+    router-link(:class="$style.Cog" :to="{ path: cog.links.self }" append)
+      div(:class="$style.name") {{ cog.name }}
+      div(:class="$style.description") {{ short }}
+      div(:class="$style.tags")
+        div(:class="$style.tag" v-for="tag in cog.tags.slice(0,3)") \#{{ tag }}
+      div(:class="$style.info")
+        div(:class="$style.author") {{ cog.author.username }}
+        Badge(:class="$style.type" :type="cog.repo.type")
 </template>
 
 <script>
@@ -42,6 +43,13 @@ import Badge from '@/components/singles/Badge';
   },
 })
 export default class Cog extends Vue {
+  get short() {
+    if (this.cog.short.length < 0) return '';
+    if (this.cog.short.length > 75) {
+      return `${this.cog.short.split().slice(0, 75).join('')}...`;
+    }
+    return this.cog.short;
+  }
 }
 </script>
 
@@ -92,4 +100,8 @@ $blueish: rgba(34,37,42,1)
   align-self: center
 </style>
 
-
+<style>
+.fadeInUp {
+  animation-duration: 150ms;
+}
+</style>
