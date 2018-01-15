@@ -1,19 +1,6 @@
-import { shallow, mount } from 'vue-test-utils';
+import { shallow, mount, createLocalVue } from '@vue/test-utils';
 import objProxy from 'identity-obj-proxy';
-
-export const render = (Component, propsData = {}, options = { useShallow: true }) => {
-  if (options.useShallow) {
-    return ({
-      wrapper: shallow(Component, { propsData }),
-      props: propsData,
-    });
-  }
-
-  return ({
-    wrapper: mount(Component, { propsData }),
-    props: propsData,
-  });
-};
+// import VueRouter from 'vue-router';
 
 export const CssModuleTestHelperMixin = {
   install(Vue) {
@@ -23,4 +10,27 @@ export const CssModuleTestHelperMixin = {
       },
     });
   },
+};
+
+const localVue = createLocalVue();
+// localVue.use(VueRouter);
+localVue.use(CssModuleTestHelperMixin);
+
+export const render = ({
+  component,
+  props = {},
+  mocks = {},
+  useShallow = true,
+}) => {
+  if (useShallow) {
+    return ({
+      wrapper: shallow(component, { props, mocks, localVue }),
+      props,
+    });
+  }
+
+  return ({
+    wrapper: mount(component, { props, mocks, localVue }),
+    props,
+  });
 };

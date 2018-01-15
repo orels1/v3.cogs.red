@@ -1,6 +1,6 @@
 <template lang="pug">
   div(:class="$style.Infobar")
-    div(:class="[$style.sidebar, sidebarType]")
+    div(:class="[$style.sidebar, sidebarLevel]")
     div(:class="$style.content_wrapper")
       div(:class="$style.title") {{ title }}
       div(:class="$style.content")
@@ -13,13 +13,13 @@ import Component from 'vue-class-component';
 
 @Component({
   props: {
-    type: { type: String, default: 'default' },
+    level: { type: String, default: 'default' },
     title: { type: String, default: 'disclaimer' },
   },
 })
 export default class Infobar extends Vue {
-  get sidebarType() {
-    return this.type ? this.$style[this.type] : this.$style.default;
+  get sidebarLevel() {
+    return this.level ? this.$style[this.level] : this.$style.default;
   }
 }
 </script>

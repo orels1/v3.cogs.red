@@ -32,7 +32,7 @@ export default class AboutPage extends Vue {
 <style lang="sass" module>
 .AboutPage
   color: #000
-  max-width: 1200px
+  max-width: 1000px
   padding: 0 20px
   margin: 0 auto
 </style>

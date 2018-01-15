@@ -1,12 +1,12 @@
 <template lang="pug">
-  router-link(:class="$style.Cog" :to="{ path: links.self }" append)
-    div(:class="$style.name") {{ name }}
-    div(:class="$style.description") {{ description }}
+  router-link(:class="$style.Cog" :to="{ path: cog.links.self }" append)
+    div(:class="$style.name") {{ cog.name }}
+    div(:class="$style.description") {{ cog.short }}
     div(:class="$style.tags")
-      div(:class="$style.tag" v-for="tag in tags") \#{{ tag }}
+      div(:class="$style.tag" v-for="tag in cog.tags") \#{{ tag }}
     div(:class="$style.info")
-      div(:class="$style.author") {{ author }}
-      Badge(:class="$style.type" :type="type")
+      div(:class="$style.author") {{ cog.author.username }}
+      Badge(:class="$style.type" :type="cog.repo.type")
 </template>
 
 <script>
@@ -18,18 +18,30 @@ import Badge from '@/components/singles/Badge';
   components: {
     Badge,
   },
+  props: {
+    cog: {
+      type: Object,
+      default: () => ({
+        name: 'cog',
+        repo: {
+          type: 'approved',
+          name: 'repo',
+        },
+        short: '',
+        description: '',
+        tags: [],
+        author: {
+          name: 'Author',
+          username: 'Author_gh',
+        },
+        links: {
+          self: '/',
+        },
+      }),
+    },
+  },
 })
 export default class Cog extends Vue {
-  name = 'language';
-  description = 'Language dictionary that works with characters and alphabets'
-  tags = [
-    'translator', 'language', 'japanese',
-  ];
-  author = 'Redjumpman';
-  type = 'approved';
-  links = {
-    self: '/cogs/orels1/ORELS-Cogs/language',
-  };
 }
 </script>
 
@@ -61,6 +73,7 @@ $blueish: rgba(34,37,42,1)
   display: flex
   margin: 10px 0 0 0
   justify-content: space-between
+  min-height: 16px
 
 .tag
   font-size: 12px
