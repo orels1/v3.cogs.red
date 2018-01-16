@@ -1,0 +1,11 @@
+{
+  "name": "v3-dev-server",
+  "version": "1.0.0",
+  "description": "v3 dev public server",
+  "main": "server.js",
+  "author": "orels1",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
