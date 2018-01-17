@@ -29,6 +29,8 @@
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import { mapState } from 'vuex';
+import find from 'lodash/find';
 import Infobar from '@/components/singles/Infobar';
 import Title from '@/components/singles/Title';
 import Cogbar from '@/components/singles/Cogbar';
@@ -44,6 +46,7 @@ import c from '@/constants';
     CodeBlock,
     VueMarkdown,
   },
+  computed: mapState(['cogs']),
 })
 export default class CogPage extends Vue {
   loaded = false;
@@ -60,8 +63,21 @@ export default class CogPage extends Vue {
 
   async created() {
     const params = this.$route.params;
-    // Fetching remote data
     try {
+      if (this.cogs.length > 0) {
+        const cog = find(
+          this.cogs,
+          i =>
+            i.name === params.cog &&
+            i.author.username === params.user &&
+            i.repo.name === params.repo,
+        );
+        if (cog) {
+          this.cog = cog;
+          this.loaded = true;
+          return;
+        }
+      }
       const resp = await fetch(`${c.COGS}/${params.user}/${params.repo}/${params.cog}`);
       const json = await resp.json();
       this.cog = json.results;

@@ -19,12 +19,11 @@
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import sortBy from 'lodash/sortBy';
+import { mapActions, mapState } from 'vuex';
 import Statsbar from '@/components/Statsbar';
 import Infobar from '@/components/singles/Infobar';
 import Title from '@/components/singles/Title';
 import Cog from '@/components/singles/Cog';
-import c from '@/constants';
 import 'animate.css';
 
 @Component({
@@ -34,9 +33,12 @@ import 'animate.css';
     CogsTitle: Title,
     Cog,
   },
+  methods: {
+    ...mapActions(['fetchCogs']),
+  },
+  computed: mapState(['cogs']),
 })
 export default class Cogs extends Vue {
-  cogs = [];
   loaded = false;
   page = 1;
 
@@ -50,9 +52,11 @@ export default class Cogs extends Vue {
 
   async created() {
     try {
-      const resp = await fetch(c.COGS);
-      const json = await resp.json();
-      this.cogs = sortBy(json.results.list, i => i.repo.type);
+      if (this.cogs.length > 0) {
+        this.loaded = true;
+        return;
+      }
+      await this.fetchCogs();
       this.loaded = true;
     } catch (e) {
       this.error = e;
