@@ -102,6 +102,6 @@ $blueish: rgba(34,37,42,1)
 
 <style>
 .fadeInUp {
-  animation-duration: 150ms;
+  animation-duration: 300ms;
 }
 </style>

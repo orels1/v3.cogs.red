@@ -1,10 +1,10 @@
 <template lang="pug">
-  div(:class="$style.Cogbar")
-    div(:class="$style.Cogbar_inner")
+  div(:class="$style.Databar")
+    div(:class="$style.Databar_inner")
       div(:class="$style.header")
         div(:class="$style.breadcrumbs")
           div(
-            v-for="(path, index) in $route.path.split('/').slice(1, 4)"
+            v-for="(path, index) in $route.path.split('/').slice(1, type === 'cog' ? 4 : 3)"
             :key="path"
             :class="$style.crumb"
           )
@@ -12,17 +12,17 @@
               :class="$style.crumb_link"
               :to="'/' + $route.path.split('/').slice(1, index + 2).join('/')"
             ) {{path}}
-        Badge(:class="$style.type" :type="cog.repo.type")
+        Badge(:class="$style.type" :type="type === 'cog' ? data.repo.type : data.type")
       div(:class="$style.infoblock")
-        div(:class="$style.title") {{$route.params.cog}}
-        div(:class="$style.tags" v-if="cog.tags.length > 0")
+        div(:class="$style.title") {{data.name}}
+        div(:class="$style.tags" v-if="data.tags.length > 0")
           FontAwesomeIcon(
             :class="$style.tags_icon"
             :icon="tagsIcon"
           )
           div(
             :class="$style.tag"
-            v-for="tag in cog.tags.slice(0, 3)"
+            v-for="tag in data.tags.slice(0, 3)"
             :key="tag"
           )
             router-link(
@@ -45,18 +45,11 @@ import faTags from '@fortawesome/fontawesome-pro-light/faTags';
     FontAwesomeIcon,
   },
   props: {
-    cog: {
-      type: Object,
-      default: () => ({
-        repo: {
-          type: 'approved',
-        },
-        tags: ['utils', 'tools', 'dictionary', 'test'],
-      }),
-    },
+    data: Object,
+    type: String,
   },
 })
-export default class Cogbar extends Vue {
+export default class Databar extends Vue {
   tagsIcon = faTags;
 }
 </script>
@@ -67,14 +60,14 @@ $white: #fcfcfc
 $mobile: 767px
 $desktop: 768px
 
-.Cogbar
+.Databar
   background: $blueish
   padding: 20px 0
   width: 100%
   display: flex
   justify-content: center
 
-.Cogbar_inner
+.Databar_inner
   width: 100%
   max-width: 1000px
   display: grid

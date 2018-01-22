@@ -17,6 +17,6 @@ export default class Title extends Vue {
   color: #000
   font-size: 24px
   text-transform: uppercase
-  margin: 20px 0
+  margin: 30px 0 20px 0
   font-weight: bold
 </style>
