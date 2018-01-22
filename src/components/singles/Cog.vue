@@ -44,7 +44,7 @@ import Badge from '@/components/singles/Badge';
 })
 export default class Cog extends Vue {
   get short() {
-    if (this.cog.short.length < 0) return '';
+    if (!this.cog.short) return '';
     if (this.cog.short.length > 75) {
       return `${this.cog.short.split().slice(0, 75).join('')}...`;
     }

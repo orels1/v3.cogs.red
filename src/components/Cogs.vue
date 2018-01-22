@@ -8,7 +8,7 @@
         |The author of Red and the contributors are not responsible for any damage caused by 3rd party cogs.
       CogsTitle New & Updated Cogs
       div(:class="$style.list" v-if="loaded")
-        Cog(v-for="cog in cogs.slice(0, 30 * page)" :key="cog" :cog="cog")
+        Cog(v-for="cog in cogs.slice(0, 30 * page)" :key="cog._id" :cog="cog")
       button(
         :class="$style.show_more"
         v-show="showMoreBtn"
@@ -34,9 +34,9 @@ import 'animate.css';
     Cog,
   },
   methods: {
-    ...mapActions(['fetchCogs']),
+    ...mapActions(['fetchCogs', 'fetchRepos']),
   },
-  computed: mapState(['cogs']),
+  computed: mapState(['cogs', 'repos']),
 })
 export default class Cogs extends Vue {
   loaded = false;
@@ -52,11 +52,17 @@ export default class Cogs extends Vue {
 
   async created() {
     try {
-      if (this.cogs.length > 0) {
+      if (this.cogs.length > 0 && this.repos.length > 0) {
         this.loaded = true;
         return;
       }
-      await this.fetchCogs();
+
+      if (this.cogs.length === 0) {
+        await this.fetchCogs();
+      }
+      if (this.repos.length === 0) {
+        await this.fetchRepos();
+      }
       this.loaded = true;
     } catch (e) {
       this.error = e;
