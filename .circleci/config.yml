@@ -2,7 +2,11 @@ version: 2
 general:
   branches:
     only:
+      - master
+      - develop
+      - /release\/.*/
       - /feature\/.*/
+      - /hotfix\/.*/
 
 jobs:
   build:
