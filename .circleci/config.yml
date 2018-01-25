@@ -1,4 +1,9 @@
 version: 2
+general:
+  branches:
+    only:
+      - /feature-.*/
+
 jobs:
   build:
     docker:
