@@ -9,7 +9,7 @@ general:
       - /hotfix\/.*/
 
 jobs:
-  build:
+  test:
     docker:
       - image: circleci/node:9.2
 
@@ -31,5 +31,33 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run: yarn test
+ 
+  build:
+    docker:
+      - image: circleci/node:9.2
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
 
       - run: yarn build
+
+workflows:
+  version: 2
+    test_and_build:
+      jobs:
+        - test
+        - build
