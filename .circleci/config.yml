@@ -66,11 +66,11 @@ workflows:
   version: 2
   test_and_build:
     jobs:
-      - checkout_code:
-        - test:
-            requires:
-              - checkout_code
-        - build:
-            requires:
-              - checkout_code
+      - checkout_code
+      - test:
+          requires:
+            - checkout_code
+      - build:
+          requires:
+            - checkout_code
 
