@@ -1,6 +1,20 @@
-# v3.cogs.red
+<h1 align="center">v3.cogs.red</h1>
+<p align="center">
+  <strong>v3 frontend for cogs.red</strong>
+</p>
+<p align="center">
+  <a href="https://circleci.com/gh/orels1/v3.cogs.red">
+    <img src="https://circleci.com/gh/orels1/v3.cogs.red.svg?style=svg">
+  </a>
+</p>
 
-> v3 frontend for cogs.red
+<p align="center">
+  <sub>Built with ❤︎ by
+  <a href="https://twitter.com/orels1_">orels1</a> and
+  <a href="https://github.com/orels1/v3.cogs.red/graphs/contributors">
+    contributors
+  </a>
+</p>
 
 ## Contribution
 
