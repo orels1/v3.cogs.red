@@ -1,6 +1,6 @@
 <template lang="pug">
   div(:class="$style.RepoPage")
-    Databar(:data="repo" type="repo")
+    Databar(:data="repo" type="repo" v-if="loaded")
     div(:class="$style.RepoPage_inner")
       Infobar(
         v-if="repo.type === 'unapproved'"
@@ -20,18 +20,18 @@
         CogTitle Readme
         p(:class="$style.text") {{cog.readme}}
       CogTitle Source
-      p(:class="$style.text").
+      p(:class="$style.text" v-if="loaded").
         If you're interested in this repo's contents, you can #[a(:href='repo.links.github.self' target="_blank") look at the source].
       CogTitle Cogs
       div(:class="$style.list" v-if="loaded")
-        Cog(v-for="cog in repoCogs" :key="cog" :cog="cog")
+        Cog(v-for="cog in repoCogs" :key="cog.name" :cog="cog")
 </template>
 
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import { mapState } from 'vuex';
-import filter from 'lodash/find';
+import filter from 'lodash/filter';
 import Infobar from '@/components/singles/Infobar';
 import Title from '@/components/singles/Title';
 import Databar from '@/components/singles/Databar';
