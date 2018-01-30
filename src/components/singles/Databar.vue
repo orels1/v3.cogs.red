@@ -4,7 +4,7 @@
       div(:class="$style.header")
         div(:class="$style.breadcrumbs")
           div(
-            v-for="(path, index) in $route.path.split('/').slice(1, type === 'cog' ? 4 : 3)"
+            v-for="(path, index) in $route.path.split('/').slice(1, crumbsDepth[type])"
             :key="path"
             :class="$style.crumb"
           )
@@ -12,10 +12,14 @@
               :class="$style.crumb_link"
               :to="'/' + $route.path.split('/').slice(1, index + 2).join('/')"
             ) {{path}}
-        Badge(:class="$style.type" :type="type === 'cog' ? data.repo.type : data.type")
+        Badge(
+          v-if="type !== 'user'"
+          :class="$style.type"
+          :type="type === 'cog' ? data.repo.type : data.type"
+        )
       div(:class="$style.infoblock")
         div(:class="$style.title") {{data.name}}
-        div(:class="$style.tags" v-if="data.tags.length > 0")
+        div(:class="$style.tags" v-if="type !== 'user' && data.tags.length > 0")
           FontAwesomeIcon(
             :class="$style.tags_icon"
             :icon="tagsIcon"
@@ -51,6 +55,11 @@ import faTags from '@fortawesome/fontawesome-pro-light/faTags';
 })
 export default class Databar extends Vue {
   tagsIcon = faTags;
+  crumbsDepth = {
+    cogs: 4,
+    repo: 3,
+    user: 2,
+  }
 }
 </script>
 

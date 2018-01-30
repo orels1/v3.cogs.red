@@ -7,7 +7,10 @@
         div(:class="$style.tag" v-for="tag in cog.tags.slice(0,3)") \#{{ tag }}
       div(:class="$style.info")
         div(:class="$style.author") {{ cog.author.username }}
-        Badge(:class="$style.type" :type="cog.repo.type")
+        Badge(
+          v-if="cog.type || cog.repo.type"
+          :class="$style.type" :type="cog.type || cog.repo.type"
+        )
 </template>
 
 <script>
