@@ -17,11 +17,13 @@
           RandomBlock(:data="randomCog")
       div(:class="[$style.box_block, $style.double_height]")
         div(:class="$style.title") Popular Tags
-        ul(:class="$style.box_block_list")
-          li(
+        div(:class="$style.box_block_list")
+          router-link(
             :class="$style.list_item"
+            :to="'/tags/' + tag.name"
             v-if="tags.length > 0"
             v-for="tag in tags.slice(0, 5)"
+            :key="tag.name"
           ) {{ tag.name }}
 </template>
 
@@ -140,6 +142,8 @@ $desktop: 768px
   padding: 5px 10px
   transition: border 150ms ease
   font-size: 10pt
+  color: $white
+  text-decoration: none
 
   &:hover
     border: 1px solid rgba($white, 1)
