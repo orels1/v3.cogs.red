@@ -4,6 +4,7 @@ import Cogs from '@/components/Cogs';
 import About from '@/components/pages/About';
 import CogPage from '@/components/pages/CogPage';
 import RepoPage from '@/components/pages/RepoPage';
+import UserPage from '@/components/pages/UserPage';
 
 Vue.use(Router);
 
@@ -19,6 +20,14 @@ const router = new Router({
       path: '/about',
       name: 'About',
       component: About,
+    },
+    {
+      path: '/cogs/:user',
+      name: 'UserPage',
+      component: UserPage,
+      meta: {
+        title: route => `Cogs by ${route.params.user} | v3.cogs.red`,
+      },
     },
     {
       path: '/cogs/:user/:repo',
