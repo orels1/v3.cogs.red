@@ -3,38 +3,60 @@
     div(:class="$style.Statsbar_inner")
       div(:class="$style.number_block")
         div(:class="$style.title") Total Cogs
-        div(:class="$style.number_content") {{ cogsCount }}
+        div(:class="$style.number_content") {{ cogs.length }}
       div(:class="[$style.number_block, $style.bottom_left]")
         div(:class="$style.title") Total Repos
-        div(:class="$style.number_content") {{ reposCount }}
+        div(:class="$style.number_content") {{ repos.length }}
       div(:class="[$style.box_block, $style.double_height]")
         div(:class="$style.title") Random Repo
-        div(:class="$style.box_block_content") test
+        div(:class="$style.box_block_content")
+          RandomBlock(:data="randomRepo")
       div(:class="[$style.box_block, $style.double_height]")
         div(:class="$style.title") Random Cog
-        div(:class="$style.box_block_content") test
+        div(:class="$style.box_block_content")
+          RandomBlock(:data="randomCog")
       div(:class="[$style.box_block, $style.double_height]")
-        div(:class="$style.title") Random Cog
-        ul(:class="$style.box_block_list")
-          li(:class="$style.list_item" v-for="tag in tags" ) {{ tag }}
+        div(:class="$style.title") Popular Tags
+        div(:class="$style.box_block_list")
+          router-link(
+            :class="$style.list_item"
+            :to="'/tags/' + tag.name"
+            v-if="tags.length > 0"
+            v-for="tag in tags.slice(0, 5)"
+            :key="tag.name"
+          ) {{ tag.name }}
 </template>
 
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import { mapState, mapActions } from 'vuex';
+import random from 'lodash/random';
+import RandomBlock from '@/components/singles/Random';
 
-@Component
+@Component({
+  components: {
+    RandomBlock,
+  },
+  computed: mapState(['cogs', 'repos', 'tags']),
+  methods: {
+    ...mapActions(['fetchTags']),
+  },
+})
 export default class Statsbar extends Vue {
-  cogsCount = 284;
-  reposCount = 34;
+  get randomRepo() {
+    return this.repos[random(0, this.repos.length - 1)];
+  }
 
-  tags = [
-    'utility',
-    'fun',
-    'community',
-    'mod',
-    'rpg',
-  ];
+  get randomCog() {
+    return this.cogs[random(0, this.cogs.length - 1)];
+  }
+
+  async created() {
+    if (this.tags.length === 0) {
+      await this.fetchTags();
+    }
+  }
 }
 </script>
 
@@ -119,7 +141,9 @@ $desktop: 768px
   border: 1px solid rgba($white, .3)
   padding: 5px 10px
   transition: border 150ms ease
-  font-size: 13px
+  font-size: 10pt
+  color: $white
+  text-decoration: none
 
   &:hover
     border: 1px solid rgba($white, 1)

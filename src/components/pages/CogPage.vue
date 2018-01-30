@@ -54,11 +54,11 @@ export default class CogPage extends Vue {
   cog = {};
 
   get repoAddLine() {
-    return `[p] cog repo add ${this.$route.params.repo} https://github.com/${this.$route.params.user}/${this.$route.params.repo}`;
+    return `[p]cog repo add ${this.$route.params.repo} https://github.com/${this.$route.params.user}/${this.$route.params.repo}`;
   }
 
   get cogAddLine() {
-    return `[p] cog install ${this.$route.params.repo} ${this.$route.params.cog}`;
+    return `[p]cog install ${this.$route.params.repo} ${this.$route.params.cog}`;
   }
 
   async created() {

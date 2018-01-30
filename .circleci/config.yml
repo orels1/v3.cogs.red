@@ -1,0 +1,76 @@
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:9.2
+
+version: 2
+general:
+  branches:
+    only:
+      - master
+      - develop
+      - /release\/.*/
+      - /feature\/.*/
+      - /hotfix\/.*/
+
+jobs:
+  checkout_code:
+    <<: *defaults
+    steps:
+      - checkout
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - ./
+  test:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ./
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run: yarn test
+ 
+  build:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ./
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run: yarn build
+
+workflows:
+  version: 2
+  test_and_build:
+    jobs:
+      - checkout_code
+      - test:
+          requires:
+            - checkout_code
+      - build:
+          requires:
+            - checkout_code
+
