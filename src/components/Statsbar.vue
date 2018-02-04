@@ -10,11 +10,11 @@
       div(:class="[$style.box_block, $style.double_height]")
         div(:class="$style.title") Random Repo
         div(:class="$style.box_block_content")
-          RandomBlock(:data="randomRepo")
+          RandomBlock(:data="randomRepo" v-if="repos.length")
       div(:class="[$style.box_block, $style.double_height]")
         div(:class="$style.title") Random Cog
         div(:class="$style.box_block_content")
-          RandomBlock(:data="randomCog")
+          RandomBlock(:data="randomCog" v-if="cogs.length")
       div(:class="[$style.box_block, $style.double_height]")
         div(:class="$style.title") Popular Tags
         div(:class="$style.box_block_list")

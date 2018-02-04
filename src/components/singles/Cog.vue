@@ -1,5 +1,5 @@
 <template lang="pug">
-  transition(enter-active-class="animated fadeInUp")
+  transition(enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown")
     router-link(:class="$style.Cog" :to="{ path: cog.links.self }" append)
       div(:class="$style.name") {{ cog.name }}
       div(:class="$style.description") {{ short }}
@@ -105,6 +105,10 @@ $blueish: rgba(34,37,42,1)
 
 <style>
 .fadeInUp {
+  animation-duration: 300ms;
+}
+
+.fadeOutDown {
   animation-duration: 300ms;
 }
 </style>

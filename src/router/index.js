@@ -5,6 +5,7 @@ import About from '@/components/pages/About';
 import CogPage from '@/components/pages/CogPage';
 import RepoPage from '@/components/pages/RepoPage';
 import UserPage from '@/components/pages/UserPage';
+import SearchPage from '@/components/pages/SearchPage';
 
 Vue.use(Router);
 
@@ -49,6 +50,14 @@ const router = new Router({
       path: '/cogs',
       redirect: '/',
       exact: true,
+    },
+    {
+      path: '/search/:search',
+      name: 'Search',
+      component: SearchPage,
+      meta: {
+        title: route => `Cogs for "${route.params.search}" | v3.cogs.red`,
+      },
     },
     {
       path: '*', // 404

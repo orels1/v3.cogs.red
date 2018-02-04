@@ -5,8 +5,10 @@
       input(
         :class="$style.search_input"
         type="text"
-        placeholder="cmd + shift + p"
+        placeholder="ctrl + p"
         v-model.trim="search"
+        @keyup="loadSearch"
+        v-shortkey.focus="['ctrl', 'p']"
       )
     div(:class="$style.links")
       router-link(
@@ -35,6 +37,25 @@ export default class Navbar extends Vue {
   ];
 
   search = '';
+  loadSearch() {
+    if (this.search.length === 0) {
+      this.$router.push('/');
+      return;
+    }
+    if (this.search.length < 2) return;
+    if (this.$route.name !== 'Search') {
+      this.$router.push(`search/${encodeURIComponent(this.search)}`);
+      return;
+    }
+
+    this.$router.replace({ params: { search: encodeURIComponent(this.search) } });
+  }
+
+  created() {
+    if (this.$route.name === 'Search') {
+      this.search = decodeURIComponent(this.$route.params.search);
+    }
+  }
 }
 </script>
 
