@@ -6,6 +6,9 @@
   <a href="https://circleci.com/gh/orels1/v3.cogs.red">
     <img src="https://circleci.com/gh/orels1/v3.cogs.red.svg?style=svg">
   </a>
+  <a href="https://snyk.io/test/github/orels1/v3.cogs.red?targetFile=package.json">
+    <img src="https://snyk.io/test/github/orels1/v3.cogs.red/badge.svg?targetFile=package.json&style=flat-square" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/github/orels1/v3.cogs.red?targetFile=package.json" style="max-width:100%;">
+  </a>
 </p>
 
 <p align="center">
