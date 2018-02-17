@@ -1,7 +1,8 @@
 <template lang="pug">
   div(:class="$style.CogPage")
-    Databar(:data="cog" type="cog")
-    div(:class="$style.CogPage_inner")
+    Databar(:source="cog" type="cog")
+    Loader(v-if="!loaded")
+    div(:class="$style.CogPage_inner" v-if="loaded")
       Infobar(
         v-if="cog.repo && cog.repo.type === 'unapproved'"
         level="danger"
@@ -31,6 +32,7 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { mapState } from 'vuex';
 import find from 'lodash/find';
+import Loader from '@/components/singles/Loader';
 import Infobar from '@/components/singles/Infobar';
 import Title from '@/components/singles/Title';
 import Databar from '@/components/singles/Databar';
@@ -45,13 +47,16 @@ import c from '@/constants';
     Databar,
     CodeBlock,
     VueMarkdown,
+    Loader,
   },
   computed: mapState(['cogs']),
 })
 export default class CogPage extends Vue {
   loaded = false;
   error = null;
-  cog = {};
+  cog = {
+    tags: {},
+  };
 
   get repoAddLine() {
     return `[p]cog repo add ${this.$route.params.repo} https://github.com/${this.$route.params.user}/${this.$route.params.repo}`;

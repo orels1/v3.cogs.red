@@ -1,6 +1,7 @@
 <template lang="pug">
   div(:class="$style.Statsbar")
-    div(:class="$style.Statsbar_inner")
+    Loader(v-if="!loaded" inverted big)
+    div(:class="$style.Statsbar_inner" v-if="loaded")
       div(:class="$style.number_block")
         div(:class="$style.title") Total Cogs
         div(:class="$style.number_content") {{ cogs.length }}
@@ -32,11 +33,13 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { mapState, mapActions } from 'vuex';
 import random from 'lodash/random';
+import Loader from '@/components/singles/Loader';
 import RandomBlock from '@/components/singles/Random';
 
 @Component({
   components: {
     RandomBlock,
+    Loader,
   },
   computed: mapState(['cogs', 'repos', 'tags']),
   methods: {
@@ -44,6 +47,8 @@ import RandomBlock from '@/components/singles/Random';
   },
 })
 export default class Statsbar extends Vue {
+  loaded = false;
+
   get randomRepo() {
     return this.repos[random(0, this.repos.length - 1)];
   }
@@ -56,6 +61,7 @@ export default class Statsbar extends Vue {
     if (this.tags.length === 0) {
       await this.fetchTags();
     }
+    this.loaded = true;
   }
 }
 </script>
@@ -72,6 +78,7 @@ $desktop: 768px
   width: 100%
   display: flex
   justify-content: center
+  min-height: 210px
 
 .Statsbar_inner
   width: 100%

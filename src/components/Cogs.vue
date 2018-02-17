@@ -7,6 +7,7 @@
         br
         |The author of Red and the contributors are not responsible for any damage caused by 3rd party cogs.
       CogsTitle New & Updated Cogs
+      Loader(v-if="!loaded")
       div(:class="$style.list" v-if="loaded")
         Cog(v-for="cog in cogs.slice(0, 30 * page)" :key="cog._id" :cog="cog")
       button(
@@ -20,6 +21,7 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import { mapActions, mapState } from 'vuex';
+import Loader from '@/components/singles/Loader';
 import Statsbar from '@/components/Statsbar';
 import Infobar from '@/components/singles/Infobar';
 import Title from '@/components/singles/Title';
@@ -32,6 +34,7 @@ import 'animate.css';
     Infobar,
     CogsTitle: Title,
     Cog,
+    Loader,
   },
   methods: {
     ...mapActions(['fetchCogs', 'fetchRepos']),

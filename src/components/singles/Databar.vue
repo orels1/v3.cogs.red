@@ -15,18 +15,18 @@
         Badge(
           v-if="type !== 'user'"
           :class="$style.type"
-          :type="type === 'cog' ? data.repo.type : data.type"
+          :type="type === 'cog' ? source.repo.type : source.type"
         )
       div(:class="$style.infoblock")
-        div(:class="$style.title") {{data.name}}
-        div(:class="$style.tags" v-if="type !== 'user' && data.tags.length > 0")
+        div(:class="$style.title") {{source.name}}
+        div(:class="$style.tags" v-if="type !== 'user' && source.tags.length > 0")
           FontAwesomeIcon(
             :class="$style.tags_icon"
             :icon="tagsIcon"
           )
           div(
             :class="$style.tag"
-            v-for="tag in data.tags.slice(0, 3)"
+            v-for="tag in source.tags.slice(0, 3)"
             :key="tag"
           )
             router-link(
@@ -49,7 +49,7 @@ import faTags from '@fortawesome/fontawesome-pro-light/faTags';
     FontAwesomeIcon,
   },
   props: {
-    data: Object,
+    source: Object,
     type: String,
   },
 })
@@ -59,6 +59,10 @@ export default class Databar extends Vue {
     cogs: 4,
     repo: 3,
     user: 2,
+  }
+
+  get renderTags() {
+    return this.type !== 'user' && this.source.tags.length > 0;
   }
 }
 </script>
@@ -75,6 +79,7 @@ $desktop: 768px
   width: 100%
   display: flex
   justify-content: center
+  min-height: 110px
 
 .Databar_inner
   width: 100%

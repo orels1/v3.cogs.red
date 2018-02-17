@@ -1,7 +1,8 @@
 <template lang="pug">
   div(:class="$style.UserPage")
-    Databar(:data="user" type="user")
-    div(:class="$style.UserPage_inner")
+    Databar(:source="user" type="user")
+    Loader(v-if="!loaded")
+    div(:class="$style.UserPage_inner" v-if="loaded")
       CogTitle Repos
       div(:class="$style.list" v-if="loaded")
         Cog(v-for="repo in userRepos" :key="repo.name" :cog="repo")
@@ -15,6 +16,7 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { mapState, mapActions } from 'vuex';
 import filter from 'lodash/filter';
+import Loader from '@/components/singles/Loader';
 import Title from '@/components/singles/Title';
 import Databar from '@/components/singles/Databar';
 import Cog from '@/components/singles/Cog';
@@ -24,6 +26,7 @@ import Cog from '@/components/singles/Cog';
     CogTitle: Title,
     Databar,
     Cog,
+    Loader,
   },
   computed: mapState(['cogs', 'repos']),
   methods: {

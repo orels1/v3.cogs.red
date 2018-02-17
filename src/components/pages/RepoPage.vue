@@ -1,7 +1,8 @@
 <template lang="pug">
   div(:class="$style.RepoPage")
-    Databar(:data="repo" type="repo" v-if="loaded")
-    div(:class="$style.RepoPage_inner")
+    Databar(:source="repo" type="repo")
+    Loader(v-if="!loaded")
+    div(:class="$style.RepoPage_inner" v-if="loaded")
       Infobar(
         v-if="repo.type === 'unapproved'"
         level="danger"
@@ -32,6 +33,8 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { mapState } from 'vuex';
 import filter from 'lodash/filter';
+
+import Loader from '@/components/singles/Loader';
 import Infobar from '@/components/singles/Infobar';
 import Title from '@/components/singles/Title';
 import Databar from '@/components/singles/Databar';
@@ -48,6 +51,7 @@ import c from '@/constants';
     CodeBlock,
     VueMarkdown,
     Cog,
+    Loader,
   },
   computed: mapState(['cogs']),
 })
@@ -55,7 +59,9 @@ export default class RepoPage extends Vue {
   loaded = false;
   error = null;
   repoCogs = [];
-  repo = {};
+  repo = {
+    tags: [],
+  };
 
   get repoAddLine() {
     return `[p] cog repo add ${this.$route.params.repo} https://github.com/${this.$route.params.user}/${this.$route.params.repo}`;
@@ -136,5 +142,10 @@ $lred: #D5413E
   @media (max-width: $tiny)
     grid-template: 130px / repeat(1, 1fr)
   grid-gap: 10px 20px
+
+.loader
+  font-size: 5em
+  margin: 10px auto
+  display: block
 </style>
 
