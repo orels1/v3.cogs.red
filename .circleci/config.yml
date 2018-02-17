@@ -73,7 +73,7 @@ jobs:
       - attach_workspace:
           at: ./
 
-      - setup_remote_docker:   # (2)
+      - setup_remote_docker:
           docker_layer_caching: true
 
       - run: echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
