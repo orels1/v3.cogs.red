@@ -73,10 +73,8 @@ jobs:
       - attach_workspace:
           at: ./
 
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
+      - setup_remote_docker:   # (2)
+          docker_layer_caching: true
 
       - run: echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
       - run: docker build -q -f dev.Dockerfile -t orels1/v3.cogs.red:alpha-$CIRCLE_SHA1 .
