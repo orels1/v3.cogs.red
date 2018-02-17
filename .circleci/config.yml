@@ -79,6 +79,7 @@ jobs:
       - run: echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
       - run: docker build -q -f dev.Dockerfile -t orels1/v3.cogs.red:alpha-$CIRCLE_BUILD_NUM .
       - run: docker push orels1/v3.cogs.red:alpha-$CIRCLE_BUILD_NUM
+      - run: node ./scripts/deploy.js $CIRCLE_BUILD_NUM
 
 workflows:
   version: 2
