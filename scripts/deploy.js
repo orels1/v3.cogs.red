@@ -75,6 +75,20 @@ const getJWT = http.request({
                 const update = JSON.parse(rawResData);
                 if (update.Warnings === null) {
                   console.log(`Succeffuly deployed version ${process.argv[2]}`);
+                  const notifyDiscord = http.request({
+                    hostname: 'discordapp.com',
+                    protocol: 'https',
+                    path: process.env.DISCORD_PORTAINER_HOOK,
+                  });
+                  notifyDiscord.write(JSON.stringify({
+                    embeds: [
+                      {
+                        title: 'Successfully deployed version 78',
+                        color: 44621,
+                      },
+                    ],
+                  }));
+                  notifyDiscord.end();
                   return;
                 }
                 console.error('Received warnings while updating', update.Warnings);
