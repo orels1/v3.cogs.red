@@ -1,5 +1,5 @@
 const http = require('http');
-const https = reuqire('https');
+const https = require('https');
 
 if (!process.argv[2]) {
   console.error('No version number passed!');
