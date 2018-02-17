@@ -1,4 +1,5 @@
 const http = require('http');
+const https = reuqire('https');
 
 if (!process.argv[2]) {
   console.error('No version number passed!');
@@ -75,9 +76,8 @@ const getJWT = http.request({
                 const update = JSON.parse(rawResData);
                 if (update.Warnings === null) {
                   console.log(`Succeffuly deployed version ${process.argv[2]}`);
-                  const notifyDiscord = http.request({
+                  const notifyDiscord = https.request({
                     hostname: 'discordapp.com',
-                    protocol: 'https:',
                     path: process.env.DISCORD_PORTAINER_HOOK,
                   });
                   notifyDiscord.write(JSON.stringify({
