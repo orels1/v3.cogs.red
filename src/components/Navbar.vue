@@ -17,10 +17,14 @@
         :class="$style.link"
         :active-class="$style.active"
         :to="item.to"
-        :target="item.external ? '_blank' : ''"
         :href="item.external ? item.to : undefined"
         exact
       ) {{ item.name }}
+      a(
+        :class="$style.link"
+        target="_blank"
+        href="https://discord.gg/red"
+      ) Community
 </template>
 
 <script>
@@ -33,7 +37,6 @@ export default class Navbar extends Vue {
     { to: '/', key: 'cogs', name: 'Cogs' },
     { to: '/about', key: 'about', name: 'About' },
     { to: '/tags', key: 'tags', name: 'Tags' },
-    { to: 'https://discord.gg/red', key: 'community', name: 'Community', external: true },
   ];
 
   search = '';
