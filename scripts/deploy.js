@@ -77,7 +77,7 @@ const getJWT = http.request({
                   console.log(`Succeffuly deployed version ${process.argv[2]}`);
                   const notifyDiscord = http.request({
                     hostname: 'discordapp.com',
-                    protocol: 'https',
+                    protocol: 'https:',
                     path: process.env.DISCORD_PORTAINER_HOOK,
                   });
                   notifyDiscord.write(JSON.stringify({
