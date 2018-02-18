@@ -7,6 +7,22 @@ if (!process.argv[2]) {
   return;
 }
 
+const notifyDiscord = (data) => {
+  const req = https.request({
+    method: 'POST',
+    hostname: 'discordapp.com',
+    path: process.env.DISCORD_PORTAINER_HOOK,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  req.write(JSON.stringify(data));
+  req.on('error', (e) => {
+    console.error(e);
+  });
+  req.end();
+};
+
 const getJWT = http.request({
   hostname: 'portainer.v3.cogs.red',
   method: 'POST',
@@ -76,19 +92,14 @@ const getJWT = http.request({
                 const update = JSON.parse(rawResData);
                 if (update.Warnings === null) {
                   console.log(`Succeffuly deployed version ${process.argv[2]}`);
-                  const notifyDiscord = https.request({
-                    hostname: 'discordapp.com',
-                    path: process.env.DISCORD_PORTAINER_HOOK,
-                  });
-                  notifyDiscord.write(JSON.stringify({
+                  notifyDiscord({
                     embeds: [
                       {
-                        title: 'Successfully deployed version 78',
+                        title: `Successfully deployed version ${process.argv[2]}`,
                         color: 44621,
                       },
                     ],
-                  }));
-                  notifyDiscord.end();
+                  });
                   return;
                 }
                 console.error('Received warnings while updating', update.Warnings);
