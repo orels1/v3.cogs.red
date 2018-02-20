@@ -1,8 +1,7 @@
 <template lang="pug">
   div(:class="$style.SearchPage")
-    Statsbar
+    PageHeader Search Results
     div(:class="$style.SearchPage_inner")
-      SearchTitle Search Results
       div(:class="$style.list" v-if="!notFound")
         Cog(v-for="cog in filteredCogs" :key="cog._id" :cog="cog")
       p(:class="$style.text" v-if="notFound") No matching cogs were found
@@ -11,16 +10,14 @@
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import Statsbar from '@/components/Statsbar';
 import Cog from '@/components/singles/Cog';
-import Title from '@/components/singles/Title';
+import PageHeader from '@/components/singles/PageHeader';
 import c from '@/constants';
 
 @Component({
   components: {
-    Statsbar,
     Cog,
-    SearchTitle: Title,
+    PageHeader,
   },
 })
 export default class SearchPage extends Vue {
@@ -82,7 +79,7 @@ $tiny: 440px
   flex-direction: column
   max-width: 1000px
   margin: 0 auto
-  padding: 0 20px
+  padding: 40px 20px 0 20px
 
 .list
   display: grid
