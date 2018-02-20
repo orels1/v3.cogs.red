@@ -40,23 +40,39 @@ export default class Navbar extends Vue {
   ];
 
   search = '';
+  prevSearch = '';
+  prevPage = null;
   loadSearch() {
-    if (this.search.length === 0) {
-      this.$router.push('/');
-      return;
-    }
-    if (this.search.length < 2) return;
-    if (this.$route.name !== 'Search') {
-      this.$router.push(`search/${encodeURIComponent(this.search)}`);
+    // initial search field interaction
+    if (!this.prevSearch.length && !this.search.length) {
+      this.prevPage = this.$route.path;
       return;
     }
 
+    this.prevSearch = this.search;
+
+    // clearing the field
+    if (this.search.length === 0) {
+      this.$router.push(this.prevPage || '/');
+      return;
+    }
+
+    // first time navigation
+    if (this.search.length < 2) return;
+    if (this.$route.name !== 'Search') {
+      this.$router.push(`/search/${encodeURIComponent(this.search)}`);
+      return;
+    }
+
+    // consecutive navigation without polluting the history
     this.$router.replace({ params: { search: encodeURIComponent(this.search) } });
   }
 
   created() {
+    // for direct search page navigation
     if (this.$route.name === 'Search') {
       this.search = decodeURIComponent(this.$route.params.search);
+      this.prevSearch = this.$route.params.search;
     }
   }
 }
