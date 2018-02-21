@@ -106,6 +106,7 @@ $white: #fcfcfc
   padding: 0 40px
   font-size: 11pt
   font-weight: 400
+  outline: none !important
   text-transform: uppercase
   line-height: 40px
   color: $white
