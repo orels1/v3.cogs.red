@@ -31,7 +31,18 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 
-@Component
+@Component({
+  watch: {
+    '$route.name': function watchRouteChange(newName, oldName) {
+      if (newName === 'Search') {
+        this.search = this.$route.params.search;
+      }
+      if (oldName === 'Search') {
+        this.search = '';
+      }
+    },
+  },
+})
 export default class Navbar extends Vue {
   menu = [
     { to: '/', key: 'cogs', name: 'Cogs' },

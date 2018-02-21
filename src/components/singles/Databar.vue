@@ -13,7 +13,7 @@
               :to="'/' + $route.path.split('/').slice(1, index + 2).join('/')"
             ) {{path}}
         Badge(
-          v-if="type !== 'user'"
+          v-if="type !== 'user' && (source.repo || source.type)"
           :class="$style.type"
           :type="type === 'cog' ? source.repo.type : source.type"
         )
@@ -31,7 +31,7 @@
           )
             router-link(
               :class="$style.tag_link"
-              :to="'/tags/' + tag"
+              :to="'/search/' + tag"
             ) {{tag}}
     
 </template>
