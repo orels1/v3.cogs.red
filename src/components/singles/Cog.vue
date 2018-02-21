@@ -105,10 +105,10 @@ $blueish: rgba(34,37,42,1)
 
 <style>
 .fadeInUp {
-  animation-duration: 300ms;
+  animation-duration: 300ms !important;
 }
 
 .fadeOutDown {
-  animation-duration: 300ms;
+  animation-duration: 300ms !important;
 }
 </style>
