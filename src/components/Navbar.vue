@@ -1,14 +1,15 @@
 <template lang="pug">
-  div(:class="$style.Navbar")
+  div(:class="$style.Navbar" ref="navbar")
     div(:class="$style.logo") Cogs.red
     div(:class="$style.search")
       input(
         :class="$style.search_input"
         type="text"
-        placeholder="ctrl + p"
+        placeholder="Search [ ctrl / cmd + shift + p ]"
         v-model.trim="search"
         @keyup="loadSearch"
-        v-shortkey.focus="['ctrl', 'p']"
+        v-hotkey="focusShortcut"
+        ref="searchField"
       )
     div(:class="$style.links")
       router-link(
@@ -53,6 +54,18 @@ export default class Navbar extends Vue {
   search = '';
   prevSearch = '';
   prevPage = null;
+
+  get focusShortcut() {
+    return ({
+      'ctrl+shift+p': this.focusSearch,
+      'meta+shift+p': this.focusSearch,
+    });
+  }
+
+  focusSearch() {
+    this.$refs.searchField.focus();
+  }
+
   loadSearch() {
     // initial search field interaction
     if (!this.prevSearch.length && !this.search.length) {
