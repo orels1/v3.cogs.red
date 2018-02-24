@@ -1,13 +1,16 @@
 <template lang="pug">
-  div(:class="$style.Cogs")
+  div(:class="$style.CogsListPage")
     Statsbar
-    div(:class="$style.Cogs_inner")
+    div(:class="$style.CogsListPage_inner")
       Infobar
         |These repositories are community made. We have no say over what goes into them.
         br
         |The author of Red and the contributors are not responsible for any damage caused by 3rd party cogs.
-      CogsTitle New & Updated Cogs
+      CogsTitle New Cogs
       Loader(v-if="!loaded")
+      div(:class="$style.list" v-if="loaded")
+        Cog(v-for="cog in latestCogs" :key="cog._id" :cog="cog")
+      CogsTitle All Cogs
       div(:class="$style.list" v-if="loaded")
         Cog(v-for="cog in cogs.slice(0, 30 * page)" :key="cog._id" :cog="cog")
       button(
@@ -15,12 +18,14 @@
         v-show="showMoreBtn"
         @click="showMore"
       ) Show More
+      
 </template>
 
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import { mapActions, mapState } from 'vuex';
+import sortBy from 'lodash/sortBy';
 import Loader from '@/components/singles/Loader';
 import Statsbar from '@/components/Statsbar';
 import Infobar from '@/components/singles/Infobar';
@@ -41,12 +46,17 @@ import 'animate.css';
   },
   computed: mapState(['cogs', 'repos']),
 })
-export default class Cogs extends Vue {
+export default class CogsListPage extends Vue {
   loaded = false;
   page = 1;
 
   get showMoreBtn() {
     return this.page * 30 < this.cogs.length;
+  }
+
+  get latestCogs() {
+    if (!this.cogs.length) return [];
+    return sortBy(this.cogs, 'updated_at').reverse().slice(0, 9);
   }
 
   showMore() {
@@ -82,10 +92,10 @@ $hover: #43464B
 $red: rgb(236,0,26)
 $white: #fcfcfc
 
-.Cogs
+.CogsListPage
   color: #000
 
-.Cogs_inner
+.CogsListPage_inner
   display: flex
   flex-direction: column
   max-width: 1000px
