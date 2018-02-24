@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Cogs from '@/components/Cogs';
+import CogsListPage from '@/components/pages/CogsListPage';
 import About from '@/components/pages/About';
 import CogPage from '@/components/pages/CogPage';
 import RepoPage from '@/components/pages/RepoPage';
@@ -15,7 +15,7 @@ const router = new Router({
     {
       path: '/',
       name: 'Cogs',
-      component: Cogs,
+      component: CogsListPage,
     },
     {
       path: '/about',
