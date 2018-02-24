@@ -10,7 +10,19 @@
       Loader(v-if="!loaded")
       div(:class="$style.list" v-if="loaded")
         Cog(v-for="cog in latestCogs" :key="cog._id" :cog="cog")
-      CogsTitle All Cogs
+      CogsTitle
+        |All Cogs
+        FontAwesomeIcon(
+          :class="$style.shuffle_icon"
+          :icon="shuffleIcon"
+          @click="shuffleClick"
+          @mouseover="showShuffleTooltip = true"
+          @mouseleave="showShuffleTooltip = false"
+        )
+        div(
+          :class="[$style.shuffle_tooltip, showShuffleTooltip && $style.visible]"
+        ) Shuffle cogs
+
       div(:class="$style.list" v-if="loaded")
         Cog(v-for="cog in cogs.slice(0, 30 * page)" :key="cog._id" :cog="cog")
       button(
@@ -26,6 +38,8 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { mapActions, mapState } from 'vuex';
 import sortBy from 'lodash/sortBy';
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome';
+import faRandom from '@fortawesome/fontawesome-pro-light/faRandom';
 import Loader from '@/components/singles/Loader';
 import Statsbar from '@/components/Statsbar';
 import Infobar from '@/components/singles/Infobar';
@@ -40,15 +54,18 @@ import 'animate.css';
     CogsTitle: Title,
     Cog,
     Loader,
+    FontAwesomeIcon,
   },
   methods: {
-    ...mapActions(['fetchCogs', 'fetchRepos']),
+    ...mapActions(['fetchCogs', 'fetchRepos', 'shuffleCogs']),
   },
   computed: mapState(['cogs', 'repos']),
 })
 export default class CogsListPage extends Vue {
   loaded = false;
   page = 1;
+  shuffleIcon = faRandom;
+  showShuffleTooltip = false;
 
   get showMoreBtn() {
     return this.page * 30 < this.cogs.length;
@@ -57,6 +74,10 @@ export default class CogsListPage extends Vue {
   get latestCogs() {
     if (!this.cogs.length) return [];
     return sortBy(this.cogs, 'updated_at').reverse().slice(0, 9);
+  }
+
+  shuffleClick() {
+    this.shuffleCogs(this.cogs);
   }
 
   showMore() {
@@ -134,5 +155,27 @@ $white: #fcfcfc
 
   &:active
     transform: scale(.9,.9)
+
+.shuffle_icon
+  cursor: pointer
+  opacity: .3
+  margin: 0 0 0 10px
+  transition: opacity 150ms ease
+
+  &:hover
+    opacity: 1
+
+.shuffle_tooltip
+  opacity: 0
+  font-weight: 300
+  font-size: 1rem
+  margin: 0 0 0 10px
+  position: relative
+  top: -3px
+  display: inline-block
+  transition: opacity 150ms ease
+
+.visible
+  opacity: .4
 
 </style>

@@ -1,18 +1,16 @@
 <template lang="pug">
-  transition(enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown")
-    router-link(:class="$style.Cog" :to="{ path: cog.links.self }" append)
-      div(:class="$style.name") {{ cog.name }}
-      div(:class="$style.description") {{ short }}
-      div(:class="$style.tags")
-        div(:class="$style.tag" v-for="tag in cog.tags.slice(0,3)") \#{{ tag }}
-      div(:class="$style.info")
-        div(:class="$style.author") {{ cog.author.username }}
-        Badge(
-          v-if="cog.type || cog.repo.type"
-          :class="$style.type" :type="cog.type || cog.repo.type"
-        )
+  router-link(:class="$style.Cog" :to="{ path: cog.links.self }" append)
+    div(:class="$style.name") {{ cog.name }}
+    div(:class="$style.description") {{ short }}
+    div(:class="$style.tags")
+      div(:class="$style.tag" v-for="tag in cog.tags.slice(0,3)") \#{{ tag }}
+    div(:class="$style.info")
+      div(:class="$style.author") {{ cog.author.username }}
+      Badge(
+        v-if="cog.type || cog.repo.type"
+        :class="$style.type" :type="cog.type || cog.repo.type"
+      )
 </template>
-
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
@@ -48,8 +46,8 @@ import Badge from '@/components/singles/Badge';
 export default class Cog extends Vue {
   get short() {
     if (!this.cog.short) return '';
-    if (this.cog.short.length > 75) {
-      return `${this.cog.short.split().slice(0, 75).join('')}...`;
+    if (this.cog.short.split('').length > 40) {
+      return `${this.cog.short.split('').slice(0, 40).join('')}...`;
     }
     return this.cog.short;
   }
@@ -104,11 +102,11 @@ $blueish: rgba(34,37,42,1)
 </style>
 
 <style>
-.fadeInUp {
+.fadeIn {
   animation-duration: 300ms !important;
 }
 
-.fadeOutDown {
+.fadeOut {
   animation-duration: 300ms !important;
 }
 </style>
