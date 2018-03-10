@@ -54,8 +54,8 @@ module.exports = {
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsSubDirectory: '',
+    assetsPublicPath: '//dev-static-cogs-red.nyc3.digitaloceanspaces.com/',
 
     /**
      * Source Maps

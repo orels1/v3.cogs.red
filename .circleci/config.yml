@@ -66,8 +66,15 @@ jobs:
           root: ./
           paths:
             - ./
+
+  deploy-dev-static:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ./
+      - run: aws s3 sync dist s3://dev-static-cogs-red.nyc3.digitaloceanspaces.com/ --delete
     
-  deploy-dev:
+  deploy-dev-docker:
     <<: *defaults
     steps:
       - attach_workspace:
@@ -92,7 +99,13 @@ workflows:
       - build:
           requires:
             - checkout_code
-      - deploy-dev:
+      - deploy-dev-static:
+          requires:
+            - build
+          filters:
+            branches:
+                only: develop
+      - deploy-dev-docker:
           requires:
             - build
           filters:
