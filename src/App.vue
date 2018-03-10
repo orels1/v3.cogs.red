@@ -27,7 +27,7 @@ body
   margin: 0
 
 #app
-  font-family: 'Avenir', Helvetica, Arial, sans-serif
+  font-family: 'Lato', Helvetica, Arial, sans-serif
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
   color: #2c3e50
@@ -35,4 +35,8 @@ body
   display: flex
   flex-direction: column
   justify-content: space-between
+</style>
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
 </style>
