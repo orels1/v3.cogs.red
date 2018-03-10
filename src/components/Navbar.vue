@@ -1,9 +1,8 @@
 <template lang="pug">
-  div(:class="$style.Navbar" ref="navbar")
-    div(:class="$style.logo") Cogs.red
-    div(:class="$style.search")
-      input(
-        :class="$style.search_input"
+  .Navbar(ref="navbar")
+    router-link.logo(to="/") Cogs.red
+    .search
+      input.search_input(
         type="text"
         placeholder="Search [ ctrl / cmd + shift + p ]"
         v-model.trim="search"
@@ -11,18 +10,16 @@
         v-hotkey="focusShortcut"
         ref="searchField"
       )
-    div(:class="$style.links")
-      router-link(
+    .links
+      router-link.link(
         v-for="item in menu"
         :key="item.key"
-        :class="$style.link"
-        :active-class="$style.active"
+        :active-class="active"
         :to="item.to"
         :href="item.external ? item.to : undefined"
         exact
       ) {{ item.name }}
-      a(
-        :class="$style.link"
+      a.link(
         target="_blank"
         href="https://discord.gg/red"
       ) Community
@@ -102,7 +99,7 @@ export default class Navbar extends Vue {
 }
 </script>
 
-<style lang="sass" module>
+<style lang="sass" scoped>
 $mobile: 767px
 $red: rgb(236,0,26)
 $grey: rgb(114,114,114)
@@ -119,6 +116,12 @@ $grey: rgb(114,114,114)
   height: 50px
   line-height: 50px
   padding: 0 20px
+  text-decoration: none
+  color: $grey
+
+  &:hover
+    color: $red
+
 
 .search
   @media (max-width: $mobile)
