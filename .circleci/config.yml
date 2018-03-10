@@ -75,7 +75,7 @@ jobs:
       - attach_workspace:
           at: ./
       - run: pip install awscli --upgrade --user
-      - run: aws s3 sync dist s3://dev-static-cogs-red.nyc3.digitaloceanspaces.com/ --delete
+      - run: python3 /home/circleci/.local/lib/python3.6/site-packages/awscli s3 sync dist s3://dev-static-cogs-red/ --endpoint-url=https://nyc3.digitaloceanspaces.com --delete
     
   deploy-dev-docker:
     <<: *defaults
