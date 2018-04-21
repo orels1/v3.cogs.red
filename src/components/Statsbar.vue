@@ -48,13 +48,10 @@ import RandomBlock from '@/components/singles/Random';
 })
 export default class Statsbar extends Vue {
   loaded = false;
+  randomCog = {};
 
   get randomRepo() {
     return this.repos[random(0, this.repos.length - 1)];
-  }
-
-  get randomCog() {
-    return this.cogs[random(0, this.cogs.length - 1)];
   }
 
   async created() {
@@ -62,6 +59,7 @@ export default class Statsbar extends Vue {
       await this.fetchTags();
     }
     this.loaded = true;
+    this.randomCog = this.cogs[random(0, this.cogs.length - 1)];
   }
 }
 </script>
