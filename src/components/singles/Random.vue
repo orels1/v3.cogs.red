@@ -32,6 +32,7 @@ import faUser from '@fortawesome/fontawesome-pro-light/faUser';
       type: Object,
       default: () => ({
         author: '',
+        tags: [],
       }),
     },
   },
