@@ -12,6 +12,11 @@
               :class="$style.crumb_link"
               :to="'/' + $route.path.split('/').slice(1, index + 2).join('/')"
             ) {{path}}
+            div(:class="$style.separator")
+              FontAwesomeIcon(
+                v-show="index !== (crumbsDepth[type] - 1)"
+                :icon="separatorIcon"
+              )
         Badge(
           v-if="type !== 'user' && (source.repo || source.type)"
           :class="$style.type"
@@ -42,6 +47,7 @@ import Component from 'vue-class-component';
 import Badge from '@/components/singles/Badge';
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome';
 import faTags from '@fortawesome/fontawesome-pro-light/faTags';
+import faAngleRight from '@fortawesome/fontawesome-pro-light/faAngleRight';
 
 @Component({
   components: {
@@ -55,8 +61,10 @@ import faTags from '@fortawesome/fontawesome-pro-light/faTags';
 })
 export default class Databar extends Vue {
   tagsIcon = faTags;
+  separatorIcon = faAngleRight;
+
   crumbsDepth = {
-    cogs: 4,
+    cog: 4,
     repo: 3,
     user: 2,
   }
@@ -104,16 +112,12 @@ $desktop: 768px
 
 .crumb
   color: rgba(#fff, .6)
+  display: flex
 
-  &:after
-    content: '▶'
-    font-size: 6px
-    position: relative
-    top: -4px
-    margin: 0 5px
-
-  &:last-child:after
-    display: none
+.separator
+  font-size: 10px
+  line-height: 30px
+  margin: 0 5px
 
 .crumb_link
   font-size: 20px
