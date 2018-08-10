@@ -40,11 +40,10 @@ export default class UserPage extends Vue {
   userRepos = [];
 
   get user() {
-    return ({
+    return {
       name: this.$route.params.user,
-    });
+    };
   }
-
 
   async created() {
     const params = this.$route.params;
@@ -62,10 +61,7 @@ export default class UserPage extends Vue {
 
     // Filter loaded cogs if any
     if (this.cogs.length > 0) {
-      const cogs = filter(
-        this.cogs,
-        i => i.author.username === params.user,
-      );
+      const cogs = filter(this.cogs, i => i.author.username === params.user);
       if (cogs.length > 0) {
         this.userCogs = cogs;
       }
@@ -73,10 +69,7 @@ export default class UserPage extends Vue {
 
     // Filter loaded repos if any
     if (this.repos.length > 0) {
-      const repos = filter(
-        this.repos,
-        i => i.author.username === params.user,
-      );
+      const repos = filter(this.repos, i => i.author.username === params.user);
       if (repos.length > 0) {
         this.userRepos = repos;
       }
@@ -97,6 +90,7 @@ $white: #fcfcfc
 $lred: #D5413E
 
 .UserPage
+  width: 100%
   color: #000
 
 .UserPage_inner

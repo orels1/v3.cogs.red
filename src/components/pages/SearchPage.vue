@@ -62,7 +62,7 @@ export default class SearchPage extends Vue {
     }
   }
 
-  updated
+  updated;
 }
 </script>
 
@@ -73,6 +73,7 @@ $tiny: 440px
 
 .SearchPage
   color: #000
+  width: 100%
 
 .SearchPage_inner
   display: flex

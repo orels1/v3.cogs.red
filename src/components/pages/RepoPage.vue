@@ -64,7 +64,9 @@ export default class RepoPage extends Vue {
   };
 
   get repoAddLine() {
-    return `[p] cog repo add ${this.$route.params.repo} https://github.com/${this.$route.params.user}/${this.$route.params.repo}`;
+    return `[p] cog repo add ${this.$route.params.repo} https://github.com/${
+      this.$route.params.user
+    }/${this.$route.params.repo}`;
   }
 
   async created() {
@@ -83,9 +85,7 @@ export default class RepoPage extends Vue {
     if (this.cogs.length > 0) {
       const cogs = filter(
         this.cogs,
-        i =>
-          i.author.username === params.user &&
-          i.repo.name === params.repo,
+        i => i.author.username === params.user && i.repo.name === params.repo,
       );
       if (cogs.length > 0) {
         this.repoCogs = cogs;
@@ -116,6 +116,7 @@ $lred: #D5413E
 
 .RepoPage
   color: #000
+  width: 100%
 
 .RepoPage_inner
   max-width: 1000px

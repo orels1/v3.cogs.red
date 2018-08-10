@@ -24,13 +24,12 @@ import Badge from '@/components/singles/Badge';
     Badge,
   },
 })
-export default class AboutPage extends Vue {
-
-}
+export default class AboutPage extends Vue {}
 </script>
 
 <style lang="sass" module>
 .AboutPage
+  width: 100%
   color: #000
   max-width: 1000px
   padding: 0 20px

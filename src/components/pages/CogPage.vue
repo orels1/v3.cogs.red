@@ -59,7 +59,9 @@ export default class CogPage extends Vue {
   };
 
   get repoAddLine() {
-    return `[p]cog repo add ${this.$route.params.repo} https://github.com/${this.$route.params.user}/${this.$route.params.repo}`;
+    return `[p]cog repo add ${this.$route.params.repo} https://github.com/${
+      this.$route.params.user
+    }/${this.$route.params.repo}`;
   }
 
   get cogAddLine() {
@@ -101,6 +103,7 @@ $lred: #D5413E
 
 .CogPage
   color: #000
+  width: 100%;
 
 .CogPage_inner
   max-width: 1000px

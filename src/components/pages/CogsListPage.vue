@@ -73,7 +73,9 @@ export default class CogsListPage extends Vue {
 
   get latestCogs() {
     if (!this.cogs.length) return [];
-    return sortBy(this.cogs, 'updated_at').reverse().slice(0, 9);
+    return sortBy(this.cogs, 'updated_at')
+      .reverse()
+      .slice(0, 9);
   }
 
   shuffleClick() {
@@ -115,6 +117,7 @@ $white: #fcfcfc
 
 .CogsListPage
   color: #000
+  width: 100%
 
 .CogsListPage_inner
   display: flex
