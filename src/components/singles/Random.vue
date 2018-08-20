@@ -33,6 +33,7 @@ import faUser from '@fortawesome/fontawesome-pro-light/faUser';
       default: () => ({
         author: '',
         tags: [],
+        links: {},
       }),
     },
   },

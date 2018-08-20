@@ -48,10 +48,25 @@ import RandomBlock from '@/components/singles/Random';
 })
 export default class Statsbar extends Vue {
   loaded = false;
-  randomCog = {};
+
+  get randomCogIndex() {
+    if (!this.cogs.length) return 0;
+    return random(0, this.cogs.length - 1);
+  }
+
+  get randomRepoIndex() {
+    if (!this.repos.length) return 0;
+    return random(0, this.repos.length - 1);
+  }
+
+  get randomCog() {
+    if (!this.cogs.length) return undefined;
+    return this.cogs[this.randomCogIndex];
+  }
 
   get randomRepo() {
-    return this.repos[random(0, this.repos.length - 1)];
+    if (!this.repos.length) return undefined;
+    return this.repos[this.randomRepoIndex];
   }
 
   async created() {
@@ -59,7 +74,6 @@ export default class Statsbar extends Vue {
       await this.fetchTags();
     }
     this.loaded = true;
-    this.randomCog = this.cogs[random(0, this.cogs.length - 1)];
   }
 }
 </script>
