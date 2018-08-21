@@ -40,11 +40,11 @@ import { mapActions, mapState } from 'vuex';
 import sortBy from 'lodash/sortBy';
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome';
 import faRandom from '@fortawesome/fontawesome-pro-light/faRandom';
-import Loader from '@/components/singles/Loader';
+import Loader from '@/components/Loader';
 import Statsbar from '@/components/Statsbar';
-import Infobar from '@/components/singles/Infobar';
-import Title from '@/components/singles/Title';
-import Cog from '@/components/singles/Cog';
+import Infobar from '@/components/Infobar';
+import Title from '@/components/Title';
+import Cog from '@/components/Cog';
 import 'animate.css';
 
 @Component({

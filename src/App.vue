@@ -10,7 +10,7 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import Navbar from '@/components/Navbar';
-import Footer from '@/components/singles/Footer';
+import Footer from '@/components/Footer';
 
 @Component({
   components: {

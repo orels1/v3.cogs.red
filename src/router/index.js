@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import CogsListPage from '@/components/pages/CogsListPage';
-import About from '@/components/pages/About';
-import CogPage from '@/components/pages/CogPage';
-import RepoPage from '@/components/pages/RepoPage';
-import UserPage from '@/components/pages/UserPage';
-import SearchPage from '@/components/pages/SearchPage';
+import CogsListPage from '@/pages/CogsListPage';
+import About from '@/pages/About';
+import CogPage from '@/pages/CogPage';
+import RepoPage from '@/pages/RepoPage';
+import UserPage from '@/pages/UserPage';
+import SearchPage from '@/pages/SearchPage';
 
 Vue.use(Router);
 

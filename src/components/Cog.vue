@@ -14,7 +14,7 @@
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import Badge from '@/components/singles/Badge';
+import Badge from '@/components/Badge';
 
 @Component({
   components: {
