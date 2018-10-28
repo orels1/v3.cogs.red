@@ -14,7 +14,8 @@
       router-link.link(
         v-for="item in menu"
         :key="item.key"
-        :active-class="active"
+        :active-class="'active'"
+        :class="{ 'active': isActive(item.key) }"
         :to="item.to"
         :href="item.external ? item.to : undefined"
         exact
@@ -57,6 +58,10 @@ export default class Navbar extends Vue {
       'ctrl+shift+p': this.focusSearch,
       'meta+shift+p': this.focusSearch,
     });
+  }
+
+  isActive(key) {
+    return (this.$route.path.indexOf("/"+key) == 0);
   }
 
   focusSearch() {
@@ -158,6 +163,7 @@ $grey: rgb(114,114,114)
 
   &:hover
     color: $red
+    cursor: pointer
 
 .active
   color: $red
