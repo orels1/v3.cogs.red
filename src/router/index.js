@@ -6,7 +6,7 @@ import CogPage from '@/pages/CogPage';
 import RepoPage from '@/pages/RepoPage';
 import UserPage from '@/pages/UserPage';
 import SearchPage from '@/pages/SearchPage';
-import Tags from '@/components/pages/Tags';
+import Tags from '@/pages/Tags';
 
 Vue.use(Router);
 

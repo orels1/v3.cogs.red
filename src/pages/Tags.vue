@@ -14,8 +14,8 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import { mapActions, mapState } from 'vuex';
-import Title from '@/components/singles/Title';
-import Tag from '@/components/singles/Tag';
+import Title from '@/components/Title';
+import Tag from '@/components/Tag';
 
 @Component({
   components: {
