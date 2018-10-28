@@ -23,9 +23,14 @@
             :class="$style.list_item"
             :to="'/tags/' + tag.name"
             v-if="tags.length > 0"
-            v-for="tag in tags.slice(0, 5)"
+            v-for="tag in tags.slice(0, 4)"
             :key="tag.name"
           ) {{ tag.name }}
+
+          router-link(
+            :class="$style.list_item_all"
+            :to="'/tags'"
+          ) Show all tags
 </template>
 
 <script>
@@ -163,6 +168,19 @@ $desktop: 768px
   font-size: 10pt
   color: $white
   text-decoration: none
+
+  &:hover
+    border: 1px solid rgba($white, 1)
+
+.list_item_all
+  border: 1px solid rgba($white, .3)
+  padding: 6px 10px 5px
+  transition: border 150ms ease
+  font-size: 10pt
+  color: $white
+  text-decoration: none
+  text-transform: uppercase 
+  text-align: center
 
   &:hover
     border: 1px solid rgba($white, 1)
