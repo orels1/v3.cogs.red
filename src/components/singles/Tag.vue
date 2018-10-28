@@ -7,17 +7,14 @@
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import Badge from '@/components/singles/Badge';
 
 @Component({
-  components: {
-  },
   props: {
     tag: {
       type: Object,
       default: () => ({
         name: '',
-        count: 0
+        count: 0,
       }),
     },
   },
@@ -38,9 +35,12 @@ export default class Tag extends Vue {
     display: flex
     justify-content: space-between
     padding: 10px
-    border: 1px solid rgba($blueish, 1)
+    border: 1px solid rgba($blueish, .2)
     transition: border 150ms ease
     text-decoration: none
+
+    &:hover
+      border-color: rgba($blueish, 1)
 
   .name 
     font-size: 16px

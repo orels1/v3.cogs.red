@@ -14,15 +14,13 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import { mapActions, mapState } from 'vuex';
-import Infobar from '@/components/singles/Infobar';
 import Title from '@/components/singles/Title';
-import Badge from '@/components/singles/Badge';
 import Tag from '@/components/singles/Tag';
 
 @Component({
   components: {
     TagsTitle: Title,
-    Tag
+    Tag,
   },
   methods: {
     ...mapActions(['fetchTags']),
@@ -42,7 +40,7 @@ export default class TagsPage extends Vue {
       if (this.tags.length === 0) {
         await this.fetchTags();
       }
-      
+
       this.loaded = true;
     } catch (e) {
       this.error = e;
