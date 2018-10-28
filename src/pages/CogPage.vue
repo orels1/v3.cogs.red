@@ -109,12 +109,12 @@ export default class CogPage extends Vue {
       });
       this.relatedCogs = await Promise.all(relres).then((completed) => {
         let merged = [];
-        completed.map((arr) => {
+        completed.forEach((arr) => {
           merged = merged.concat(arr);
         });
         return merged;
       });
-      this.relatedCogs = uniqBy(this.relatedCogs, "_id").slice(0, 3);
+      this.relatedCogs = uniqBy(this.relatedCogs, '_id').slice(0, 3);
 
       if (this.relatedCogs.length < 3) {
         if (this.cogs.length === 0) {
