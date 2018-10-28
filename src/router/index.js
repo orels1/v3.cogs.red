@@ -6,7 +6,6 @@ import CogPage from '@/components/pages/CogPage';
 import RepoPage from '@/components/pages/RepoPage';
 import UserPage from '@/components/pages/UserPage';
 import SearchPage from '@/components/pages/SearchPage';
-import Tags from '@/components/pages/Tags';
 
 Vue.use(Router);
 
@@ -59,11 +58,6 @@ const router = new Router({
       meta: {
         title: route => `Cogs for "${route.params.search}" | v3.cogs.red`,
       },
-    },
-    {
-      path: '/tags',
-      name: 'Tags',
-      component: Tags,
     },
     {
       path: '*', // 404
