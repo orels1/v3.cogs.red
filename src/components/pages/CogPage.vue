@@ -25,18 +25,24 @@
       CogTitle Source
       p(:class="$style.text").
         If you're interested in how this cog works, you can #[a(:href='cog.links.github.self' target="_blank") look at the source].
+
+      CogTitle Related Cogs
+      div(:class="$style.list" v-if="loaded")
+        Cog(v-for="cog in relatedCogs" :key="cog._id" :cog="cog")
+
 </template>
 
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import { mapState } from 'vuex';
-import find from 'lodash/find';
+import { mapActions, mapState } from 'vuex';
+import { find, uniqBy } from 'lodash';
 import Loader from '@/components/singles/Loader';
 import Infobar from '@/components/singles/Infobar';
 import Title from '@/components/singles/Title';
 import Databar from '@/components/singles/Databar';
 import CodeBlock from '@/components/singles/CodeBlock';
+import Cog from '@/components/singles/Cog';
 import VueMarkdown from 'vue-markdown';
 import c from '@/constants';
 
@@ -48,6 +54,10 @@ import c from '@/constants';
     CodeBlock,
     VueMarkdown,
     Loader,
+    Cog,
+  },
+  methods: {
+    ...mapActions(['fetchCogs', 'shuffleCogs']),
   },
   computed: mapState(['cogs']),
 })
@@ -57,6 +67,7 @@ export default class CogPage extends Vue {
   cog = {
     tags: {},
   };
+  relatedCogs = [];
 
   get repoAddLine() {
     return `[p]cog repo add ${this.$route.params.repo} https://github.com/${
@@ -85,9 +96,33 @@ export default class CogPage extends Vue {
           return;
         }
       }
+
       const resp = await fetch(`${c.COGS}/${params.user}/${params.repo}/${params.cog}`);
       const json = await resp.json();
       this.cog = json.results;
+
+      // finding related cogs based on tags
+      let relres = this.cog.tags.map(async tag => {
+        const resp = await fetch(`${c.SEARCH}/${tag}`);
+        const json = await resp.json();
+        return json.results.list;
+      });
+      this.relatedCogs = await Promise.all(relres).then(completed => {
+        let merged = [];
+        completed.map(arr => {
+          merged = merged.concat(arr);
+        });
+        return merged;
+      });
+      this.relatedCogs = uniqBy(this.relatedCogs, "_id").slice(0, 3);
+
+      if(this.relatedCogs.length < 3) {
+        if (this.cogs.length === 0) {
+          await this.fetchCogs();
+        }
+        this.relatedCogs = this.relatedCogs.concat( this.cogs.slice(0, 3 - this.relatedCogs.length) );
+      }
+
       this.loaded = true;
     } catch (e) {
       this.error = e;
@@ -97,6 +132,8 @@ export default class CogPage extends Vue {
 </script>
 
 <style lang="sass" module>
+$mobile: 767px
+$tiny: 440px
 $darkish: rgba(#000, .7)
 $white: #fcfcfc
 $lred: #D5413E
@@ -121,5 +158,15 @@ $lred: #D5413E
 
     &:hover
       text-decoration-color: rgba($lred, .8)
+
+.list
+  display: grid
+  grid-template: 130px / repeat(3, 1fr)
+  @media (max-width: $mobile)
+    grid-template: 130px / repeat(2, 1fr)
+  @media (max-width: $tiny)
+    grid-template: 130px / repeat(1, 1fr)
+  grid-gap: 10px 20px
+
 </style>
 
