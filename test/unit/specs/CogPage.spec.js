@@ -1,4 +1,4 @@
-import CogPage from '@/components/pages/CogPage';
+import CogPage from '@/pages/CogPage';
 import { render } from '../utils';
 
 const $route = {

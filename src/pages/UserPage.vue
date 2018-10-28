@@ -16,10 +16,10 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { mapState, mapActions } from 'vuex';
 import filter from 'lodash/filter';
-import Loader from '@/components/singles/Loader';
-import Title from '@/components/singles/Title';
-import Databar from '@/components/singles/Databar';
-import Cog from '@/components/singles/Cog';
+import Loader from '@/components/Loader';
+import Title from '@/components/Title';
+import Databar from '@/components/Databar';
+import Cog from '@/components/Cog';
 
 @Component({
   components: {

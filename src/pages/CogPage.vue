@@ -37,12 +37,12 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { mapActions, mapState } from 'vuex';
 import { find, uniqBy } from 'lodash';
-import Loader from '@/components/singles/Loader';
-import Infobar from '@/components/singles/Infobar';
-import Title from '@/components/singles/Title';
-import Databar from '@/components/singles/Databar';
-import CodeBlock from '@/components/singles/CodeBlock';
-import Cog from '@/components/singles/Cog';
+import Loader from '@/components/Loader';
+import Infobar from '@/components/Infobar';
+import Title from '@/components/Title';
+import Databar from '@/components/Databar';
+import CodeBlock from '@/components/CodeBlock';
+import Cog from '@/components/Cog';
 import VueMarkdown from 'vue-markdown';
 import c from '@/constants';
 
@@ -72,7 +72,7 @@ export default class CogPage extends Vue {
   get repoAddLine() {
     return `[p]cog repo add ${this.$route.params.repo} https://github.com/${
       this.$route.params.user
-    }/${this.$route.params.repo}`;
+      }/${this.$route.params.repo}`;
   }
 
   get cogAddLine() {
@@ -102,25 +102,25 @@ export default class CogPage extends Vue {
       this.cog = json.results;
 
       // finding related cogs based on tags
-      let relres = this.cog.tags.map(async tag => {
-        const resp = await fetch(`${c.SEARCH}/${tag}`);
-        const json = await resp.json();
-        return json.results.list;
+      const relres = this.cog.tags.map(async (tag) => {
+        const searchResp = await fetch(`${c.SEARCH}/${tag}`);
+        const searchJson = await searchResp.json();
+        return searchJson.results.list;
       });
-      this.relatedCogs = await Promise.all(relres).then(completed => {
+      this.relatedCogs = await Promise.all(relres).then((completed) => {
         let merged = [];
-        completed.map(arr => {
+        completed.map((arr) => {
           merged = merged.concat(arr);
         });
         return merged;
       });
       this.relatedCogs = uniqBy(this.relatedCogs, "_id").slice(0, 3);
 
-      if(this.relatedCogs.length < 3) {
+      if (this.relatedCogs.length < 3) {
         if (this.cogs.length === 0) {
           await this.fetchCogs();
         }
-        this.relatedCogs = this.relatedCogs.concat( this.cogs.slice(0, 3 - this.relatedCogs.length) );
+        this.relatedCogs = this.relatedCogs.concat(this.cogs.slice(0, 3 - this.relatedCogs.length));
       }
 
       this.loaded = true;

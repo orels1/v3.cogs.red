@@ -44,7 +44,7 @@
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import Badge from '@/components/singles/Badge';
+import Badge from '@/components/Badge';
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome';
 import faTags from '@fortawesome/fontawesome-pro-light/faTags';
 import faAngleRight from '@fortawesome/fontawesome-pro-light/faAngleRight';

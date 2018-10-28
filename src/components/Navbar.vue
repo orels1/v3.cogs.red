@@ -14,7 +14,7 @@
       router-link.link(
         v-for="item in menu"
         :key="item.key"
-        :active-class="active"
+        active-class="active"
         :to="item.to"
         :href="item.external ? item.to : undefined"
         exact
@@ -45,6 +45,7 @@ export default class Navbar extends Vue {
   menu = [
     { to: '/', key: 'cogs', name: 'Cogs' },
     { to: '/about', key: 'about', name: 'About' },
+    { to: '/addRepo', key: 'addRepo', name: 'Add Repo' },
     { to: '/tags', key: 'tags', name: 'Tags' },
   ];
 
@@ -53,10 +54,10 @@ export default class Navbar extends Vue {
   prevPage = null;
 
   get focusShortcut() {
-    return ({
+    return {
       'ctrl+shift+p': this.focusSearch,
       'meta+shift+p': this.focusSearch,
-    });
+    };
   }
 
   focusSearch() {
@@ -106,6 +107,7 @@ $grey: rgb(114,114,114)
 
 .Navbar
   display: flex
+  width: 100%
   justify-content: space-between
   box-shadow: 0 0 10px rgba(0,0,0,.1)
   @media (max-width: $mobile)

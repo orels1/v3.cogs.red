@@ -33,8 +33,8 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { mapState, mapActions } from 'vuex';
 import random from 'lodash/random';
-import Loader from '@/components/singles/Loader';
-import RandomBlock from '@/components/singles/Random';
+import Loader from '@/components/Loader';
+import RandomBlock from '@/components/Random';
 
 @Component({
   components: {
