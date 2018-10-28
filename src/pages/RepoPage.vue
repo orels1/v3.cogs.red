@@ -34,13 +34,13 @@ import Component from 'vue-class-component';
 import { mapState } from 'vuex';
 import filter from 'lodash/filter';
 
-import Loader from '@/components/singles/Loader';
-import Infobar from '@/components/singles/Infobar';
-import Title from '@/components/singles/Title';
-import Databar from '@/components/singles/Databar';
-import CodeBlock from '@/components/singles/CodeBlock';
+import Loader from '@/components/Loader';
+import Infobar from '@/components/Infobar';
+import Title from '@/components/Title';
+import Databar from '@/components/Databar';
+import CodeBlock from '@/components/CodeBlock';
 import VueMarkdown from 'vue-markdown';
-import Cog from '@/components/singles/Cog';
+import Cog from '@/components/Cog';
 import c from '@/constants';
 
 @Component({

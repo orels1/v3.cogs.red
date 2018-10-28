@@ -13,9 +13,9 @@
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import Infobar from '@/components/singles/Infobar';
-import Title from '@/components/singles/Title';
-import Badge from '@/components/singles/Badge';
+import Infobar from '@/components/Infobar';
+import Title from '@/components/Title';
+import Badge from '@/components/Badge';
 
 @Component({
   components: {

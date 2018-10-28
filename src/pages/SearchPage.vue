@@ -10,8 +10,8 @@
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import Cog from '@/components/singles/Cog';
-import PageHeader from '@/components/singles/PageHeader';
+import Cog from '@/components/Cog';
+import PageHeader from '@/components/PageHeader';
 import c from '@/constants';
 
 @Component({
