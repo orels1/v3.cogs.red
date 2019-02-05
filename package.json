@@ -19,7 +19,7 @@
     "@fortawesome/fontawesome-pro-light": "^5.0.2",
     "@fortawesome/vue-fontawesome": "^0.0.22",
     "animate.css": "^3.5.2",
-    "lodash": "4.17.5",
+    "lodash": "4.17.11",
     "v-hotkey": "^0.2.0",
     "vue": "^2.5.17",
     "vue-class-component": "^6.1.2",
