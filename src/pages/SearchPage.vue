@@ -102,4 +102,3 @@ export default class SearchPage extends Vue {
   }
 }
 </style>
-

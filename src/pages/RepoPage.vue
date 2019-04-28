@@ -8,9 +8,9 @@
         level="danger"
         title="Use at your own risk!"
       ).
-        This is a cog from an unapproved repo, 
-        it was not checked by members of either Red-DiscordBot or Cogs-Support staff 
-        and it can contain anything.
+        This is a cog from an unapproved repo,
+         it was not checked by members of either Red-DiscordBot or Cogs-Support staff
+         and it can contain anything.
       CogTitle Description
       VueMarkdown.text(:source="repo.description")
       CogTitle Installation
@@ -22,7 +22,8 @@
         VueMarkdown.text.readme(:source="repo.readme")
       CogTitle Source
       p.text(v-if="loaded").
-        If you're interested in this repo's contents, you can #[a(:href='githubLink' target="_blank") look at the source].
+        If you're interested in this repo's contents,
+         you can #[a(:href='githubLink' target="_blank") look at the source].
       CogTitle Cogs
       div.list(v-if="loaded")
         Cog(v-for="cog in repoCogs" :key="cog.name" :cog="cog")
@@ -69,12 +70,11 @@ export default class RepoPage extends Vue {
 
   get repoAddLine() {
     return `[p] cog repo add ${this.$route.params.repo} https://github.com/${
-      this.$route.params.user
-      }/${this.$route.params.repo}`;
+      this.$route.params.user}/${this.$route.params.repo}`;
   }
 
   async created() {
-    const params = this.$route.params;
+    const { params } = this.$route;
     const unapprovedQuery = this.settings.unapproved ? '?showUnapproved=true' : '';
 
     // Load repo data
@@ -174,4 +174,3 @@ export default class RepoPage extends Vue {
   }
 }
 </style>
-

@@ -45,7 +45,6 @@ export default class TagsPage extends Vue {
       this.error = e;
     }
   }
-
 }
 </script>
 
@@ -72,4 +71,3 @@ export default class TagsPage extends Vue {
   grid-template: 41px / repeat(2, 1fr);
 }
 </style>
-

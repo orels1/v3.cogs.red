@@ -5,7 +5,8 @@
       Infobar
         |These repositories are community made. We have no say over what goes into them.
         br
-        |The author of Red and the contributors are not responsible for any damage caused by 3rd party cogs.
+        |The author of Red and the contributors are not responsible for any damage caused by
+        | 3rd party cogs.
       UnapprovedSwitch
       CogsTitle New Cogs
       Loader(v-if="!loaded")
@@ -31,7 +32,6 @@
         v-show="showMoreBtn"
         @click="showMore"
       ) Show More
-      
 </template>
 
 <script>

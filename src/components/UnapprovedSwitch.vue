@@ -8,7 +8,9 @@
       .modal-bg(@click="modal = false")
       .modal-content(v-if="!settings.unapproved")
         .modal-title You are about to show unapproved repositories
-        .modal-text This means that from here on you're personally responsible for using the code that has not been screened and approved by Red - Discord Bot QA staff.
+        .modal-text.
+          This means that from here on you're personally responsible for using the code that has not
+           been screened and approved by Red - Discord Bot QA staff.
         input.modal-input(v-model="agreement" placeholder="Type \"I agree\" to confirm")
         button.proceed(:disabled="agreement !== 'I agree'" @click="toggle") Show unapproved
       .modal-content(v-if="settings.unapproved")

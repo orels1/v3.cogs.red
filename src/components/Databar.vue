@@ -8,7 +8,6 @@
             :key="path"
           )
             router-link.crumb_link(
-              
               :to="'/' + $route.path.split('/').slice(1, index + (index > 1 ? 3 : 2)).join('/')"
             ) {{path}}
             .separator
@@ -18,13 +17,14 @@
               )
         Badge.type(
           v-if="type !== 'user' && (source.repo || source.type)"
-          
           :type="type === 'cog' ? source.repo.type : source.type"
         )
       .infoblock
         .title
-          |{{source.name}} 
-          small(v-if="source.version || source.botVersion") [v{{source.version || source.botVersion[0]}}]
+          |{{source.name}}
+          |{{' '}}
+          small(v-if="source.version || source.botVersion")
+            |[v{{source.version || source.botVersion[0]}}]
         .tags(v-if="type !== 'user' && source.tags.length > 0")
           .report(@click="scrollToReport")
             .report_text(:class="reportVisible && 'shown'") report cog
@@ -37,7 +37,6 @@
           font-awesome-icon.tags_icon(:icon="['fal', 'tags']")
           .tag(v-for="tag in source.tags.slice(0, 3)" :key="tag")
             router-link.tag_link(:to="'/search/' + tag") {{tag}}
-    
 </template>
 
 <script>

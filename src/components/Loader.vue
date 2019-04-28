@@ -41,4 +41,3 @@ export default class Loader extends Vue {
   color: color(--white);
 }
 </style>
-

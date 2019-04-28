@@ -46,7 +46,7 @@ export default class UserPage extends Vue {
   }
 
   async created() {
-    const params = this.$route.params;
+    const { params } = this.$route;
 
     try {
       if (this.cogs.length === 0) {
@@ -127,4 +127,3 @@ export default class UserPage extends Vue {
   }
 }
 </style>
-

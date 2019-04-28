@@ -3,7 +3,6 @@
     .PageHeader_inner
       .content
         slot
-    
 </template>
 
 <script>
