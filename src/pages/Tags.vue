@@ -1,8 +1,7 @@
 <template lang="pug">
-  div(:class="$style.TagsPage")
+  .TagsPage
     TagsTitle Tags
-    
-    div(:class="$style.list" v-if="loaded")
+    .list(v-if="loaded")
       Tag(
         v-for="tag in tags"
         :key="tag.name"
@@ -50,25 +49,28 @@ export default class TagsPage extends Vue {
 }
 </script>
 
-<style lang="sass" module>
-  $mobile: 767px
-  $tiny: 440px
+<style scoped>
+.TagsPage {
+  width: 100%;
+  color: #000;
+  max-width: 1000px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
 
-  .TagsPage
-    width: 100%
-    color: #000
-    max-width: 1000px
-    padding: 0 20px
-    margin: 0 auto
+.list {
+  display: grid;
+  grid-template: 41px / repeat(3, 1fr)
+  grid-gap: 10px 20px;
+}
 
-  .list
-    display: grid
-    grid-template: 41px / repeat(3, 1fr)
-    @media (max-width: $mobile)
-      grid-template: 41px / repeat(2, 1fr)
-    @media (max-width: $tiny)
-      grid-template: 41px / repeat(1, 1fr)
-    grid-gap: 10px 20px
+@media (max-width: var(--tiny)) {
+  grid-template: 41px / repeat(1, 1fr);
+}
+
+@media (max-width: var(--mobile)) {
+  grid-template: 41px / repeat(2, 1fr);
+}
 
 </style>
 

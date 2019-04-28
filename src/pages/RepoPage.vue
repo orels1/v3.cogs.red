@@ -1,8 +1,8 @@
 <template lang="pug">
-  div(:class="$style.RepoPage")
+  .RepoPage
     Databar(:source="repo" type="repo")
     Loader(v-if="!loaded")
-    div(:class="$style.RepoPage_inner" v-if="loaded")
+    .RepoPage_inner(v-if="loaded")
       Infobar(
         v-if="repo.type === 'unapproved'"
         level="danger"
@@ -12,19 +12,19 @@
         it was not checked by members of either Red-DiscordBot or Cogs-Support staff 
         and it can contain anything.
       CogTitle Description
-      VueMarkdown(:class="$style.text" :source="repo.description")
+      VueMarkdown.text(:source="repo.description")
       CogTitle Installation
-      p(:class="$style.text").
+      p.text.
         Replace [p] with your bot's prefix and use these commands
       CodeBlock(:code="repoAddLine")
       div(v-if="repo.readme")
         CogTitle Readme
-        VueMarkdown(:class="[$style.text, $style.readme]" :source="repo.readme")
+        VueMarkdown.text.readme(:source="repo.readme")
       CogTitle Source
-      p(:class="$style.text" v-if="loaded").
+      p.text(v-if="loaded").
         If you're interested in this repo's contents, you can #[a(:href='githubLink' target="_blank") look at the source].
       CogTitle Cogs
-      div(:class="$style.list" v-if="loaded")
+      div.list(v-if="loaded")
         Cog(v-for="cog in repoCogs" :key="cog.name" :cog="cog")
 </template>
 
@@ -112,50 +112,66 @@ export default class RepoPage extends Vue {
 }
 </script>
 
-<style lang="sass" module>
-$mobile: 767px
-$tiny: 440px
-$darkish: rgba(#000, .7)
-$white: #fcfcfc
-$lred: #D5413E
+<style scoped>
+.RepoPage {
+  color: var(--black);
+  width: 100%;
+}
 
-.RepoPage
-  color: #000
-  width: 100%
+.RepoPage_inner {
+  max-width: 1000px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
 
-.RepoPage_inner
-  max-width: 1000px
-  padding: 0 20px
-  margin: 0 auto
+.text {
+  color: var(--darkish);
+}
 
-.text
-  color: $darkish
+.text a {
+  color: var(--lred);
+  text-decoration: underline;
+  text-decoration-color: rgba(213, 65, 62, 0);
+  transition: text-decoration-color 150ms ease;
+}
 
-  a
-    color: $lred
-    text-decoration: underline
-    text-decoration-color: rgba($lred, 0)
-    transition: text-decoration-color 150ms ease
+.text a:hover {
+  text-decoration-color: rgba(213, 65, 62, 0.8);
+}
 
-    &:hover
-      text-decoration-color: rgba($lred, .8)
+.list {
+  display: grid;
+  grid-template: 130px / repeat(3, 1fr);
+  grid-gap: 10px 20px;
+}
 
-.list
-  display: grid
-  grid-template: 130px / repeat(3, 1fr)
-  @media (max-width: $mobile)
-    grid-template: 130px / repeat(2, 1fr)
-  @media (max-width: $tiny)
-    grid-template: 130px / repeat(1, 1fr)
-  grid-gap: 10px 20px
+.list {
+  display: grid;
+  grid-template: 130px / repeat(3, 1fr);
+  grid-gap: 10px 20px;
+}
 
-.loader
-  font-size: 5em
-  margin: 10px auto
-  display: block
+.loader {
+  font-size: 5em;
+  margin: 10px auto;
+  display: block;
+}
 
-.readme
-  padding: 1px 15px 1px 15px
-  background-color: hsl(0, 0%, 95%)
+.readme {
+  padding: 1px 15px 1px 15px;
+  background-color: hsl(0, 0%, 95%);
+}
+
+@media (max-width: var(--tiny)) {
+  .list {
+    grid-template: 130px / repeat(1, 1fr);
+  }
+}
+
+@media (max-width: var(--mobile)) {
+  .list {
+    grid-template: 130px / repeat(2, 1fr);
+  }
+}
 </style>
 

@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(:class="[$style.Badge, color]") {{ content }}
+  .Badge(:class="color") {{ content }}
 </template>
 
 <script>
@@ -23,20 +23,23 @@ export default class Badge extends Vue {
 }
 </script>
 
-<style lang="sass" module>
-.Badge
-  height: 17px
-  line-height: 17px
-  padding: 0 10px
-  font-size: 10px
-  color: #fff
-  background-color: #25a85c
+<style scoped>
+.Badge {
+  height: 17px;
+  line-height: 17px;
+  padding: 0 10px;
+  font-size: 10px;
+  color: #fff;
+  background-color: #25a85c;
+}
 
-.approved
-  background: #25a85c
+.approved {
+  background: #25a85c;
+}
 
-.unapproved
-  background: #E91F1F
+.unapproved {
+  background: #e91f1f;
+}
 </style>
 
 

@@ -1,10 +1,10 @@
 <template lang="pug">
-  div(:class="$style.SearchPage")
+  .SearchPage
     PageHeader Search Results
-    div(:class="$style.SearchPage_inner")
-      div(:class="$style.list" v-if="!notFound")
+    .SearchPage_inner
+      .list(v-if="!notFound")
         Cog(v-for="cog in filteredCogs" :key="cog._id" :cog="cog")
-      p(:class="$style.text" v-if="notFound") No matching cogs were found
+      p.text(v-if="notFound") No matching cogs were found
 </template>
 
 <script>
@@ -66,32 +66,40 @@ export default class SearchPage extends Vue {
 }
 </script>
 
-<style lang="sass" module>
-$darkish: rgba(#000, .7)
-$mobile: 767px
-$tiny: 440px
+<style scoped>
+.SearchPage {
+  color: #000;
+  width: 100%;
+}
 
-.SearchPage
-  color: #000
-  width: 100%
+.SearchPage_inner {
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px 0 20px;
+}
 
-.SearchPage_inner
-  display: flex
-  flex-direction: column
-  max-width: 1000px
-  margin: 0 auto
-  padding: 40px 20px 0 20px
+.list {
+  display: grid;
+  grid-template: 130px / repeat(3, 1fr);
+  grid-gap: 10px 20px;
+}
 
-.list
-  display: grid
-  grid-template: 130px / repeat(3, 1fr)
-  @media (max-width: $mobile)
-    grid-template: 130px / repeat(2, 1fr)
-  @media (max-width: $tiny)
-    grid-template: 130px / repeat(1, 1fr)
-  grid-gap: 10px 20px
+.text {
+  color: var(--lblack);
+}
 
-.text
-  color: $darkish
+@media (max-width: var(--tiny)) {
+  .list {
+    grid-template: 130px / repeat(1, 1fr);
+  }
+}
+
+@media (max-width: var(--mobile)) {
+  .list {
+    grid-template: 130px / repeat(2, 1fr);
+  }
+}
 </style>
 

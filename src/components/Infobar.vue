@@ -1,9 +1,9 @@
 <template lang="pug">
-  div(:class="$style.Infobar")
-    div(:class="[$style.sidebar, sidebarLevel]")
-    div(:class="$style.content_wrapper")
-      div(:class="$style.title") {{ title }}
-      div(:class="$style.content")
+  .Infobar
+    .sidebar.sidebarLevel
+    .content_wrapper
+      .title {{ title }}
+      .content
         slot
 </template>
 
@@ -24,38 +24,40 @@ export default class Infobar extends Vue {
 }
 </script>
 
-<style lang="sass" module>
-$warn: rgb(253,185,141)
-$black: #000
-$red: #e74c3c
+<style scoped>
+.Infobar {
+  color: var(--black);
+  margin: 20px 0;
+  display: flex;
+}
 
-.Infobar
-  color: #000
-  margin: 20px 0
-  display: flex
+.sidebar {
+  min-height: 50px;
+  width: 10px;
+}
 
-.sidebar
-  min-height: 50px
-  width: 10px
+.default {
+  background: var(--warn);
+}
 
-.default
-  background: $warn
+.danger {
+  background: var(--danger);
+}
 
-.danger
-  background: $red
+.title {
+  font-size: 20px;
+  text-transform: uppercase;
+}
 
-.title
-  font-size: 20px
-  text-transform: uppercase
+.content_wrapper {
+  margin: 0 0 0 10px;
+  display: flex;
+  flex-direction: column;
+}
 
-.content_wrapper
-  margin: 0 0 0 10px
-  display: flex
-  flex-direction: column
-
-.content
-  font-size: 14px
-  margin: 5px 0 0 0
-  color: rgba($black,.8)
-
+.content {
+  font-size: 14px;
+  margin: 5px 0 0 0;
+  color: var(--lblack);
+}
 </style>

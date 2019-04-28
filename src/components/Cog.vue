@@ -1,16 +1,16 @@
 <template lang="pug">
-  router-link(:class="$style.Cog" :to="{ path: `/cogs${cog.links.self}` }" append)
-    div(:class="$style.name") {{ cog.name }}
-    div(:class="$style.description") {{ short }}
-    div(:class="$style.tags")
-      div(:class="$style.tag" v-for="tag in cog.tags.slice(0,3)") \#{{ tag }}
-    div(:class="$style.info")
-      div(:class="$style.author") {{ cog.author.username }}
-      div(:class="$style.extra_info")
-        small(:class="$style.version" v-if="cog.version || cog.botVersion") [v{{cog.version || cog.botVersion[0]}}]
-        Badge(
+  router-link.Cog(:to="{ path: `/cogs${cog.links.self}` }" append)
+    .name {{ cog.name }}
+    .description {{ short }}
+    .tags
+      .tag( v-for="tag in cog.tags.slice(0,3)") \#{{ tag }}
+    .info
+      .author {{ cog.author.username }}
+      .extra_info
+        small.version(v-if="cog.version || cog.botVersion") [v{{cog.version || cog.botVersion[0]}}]
+        Badge.type(
           v-if="cog.type || cog.repo.type"
-          :class="$style.type" :type="cog.type || cog.repo.type"
+          :type="cog.type || cog.repo.type"
         )
 </template>
 <script>
@@ -56,58 +56,65 @@ export default class Cog extends Vue {
 }
 </script>
 
-<style lang="sass" module>
-$black: #000
-$light: rgba($black, .6)
-$blueish: rgba(34,37,42,1)
+<style scoped>
+.Cog {
+  color: var(--black);
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0);
+  transition: border 150ms ease;
+  text-decoration: none;
+}
 
-.Cog
-  color: $black
-  display: flex
-  flex-direction: column
-  padding: 10px
-  border: 1px solid rgba($blueish, 0)
-  transition: border 150ms ease
-  text-decoration: none
+.Cog:hover {
+  border: 1px solid rgba(34, 37, 42, 0.6);
+}
 
-  &:hover
-    border: 1px solid rgba($blueish, .6)
+.name {
+  font-weight: bold;
+}
 
-.name
-  font-weight: bold
+.description {
+  color: var(--light);
+  font-size: 14px;
+}
 
-.description
-  color: $light
-  font-size: 14px
+.tags {
+  display: flex;
+  margin: 10px 0 0 0;
+  justify-content: space-between;
+  min-height: 16px;
+}
 
-.tags
-  display: flex
-  margin: 10px 0 0 0
-  justify-content: space-between
-  min-height: 16px
+.tag {
+  font-size: 12px;
+  color: var(--light);
+}
 
-.tag
-  font-size: 12px
-  color: $light
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0 0 0;
+  color: var(--light);
+}
 
-.info
-  display: flex
-  justify-content: space-between
-  margin: 5px 0 0 0
-  color: $light
+.author {
+  font-size: 14px;
+}
 
-.author
-  font-size: 14px
+.type {
+  align-self: center;
+}
 
-.type
-  align-self: center
+.extra_info {
+  display: flex;
+}
 
-.extra_info
-  display: flex
-
-.version
-  padding-right: 15px
-  color: hsl(0, 0%, 50%)
+.version {
+  padding-right: 15px;
+  color: hsl(0, 0%, 50%);
+}
 </style>
 
 <style>

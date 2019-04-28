@@ -3,6 +3,7 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: require('./aliases.config').webpack,
+      extensions: ['*', '.js', '.vue', '.json'],
     },
   },
   css: {

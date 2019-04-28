@@ -1,7 +1,7 @@
 <template lang="pug">
-  div(:class="$style.CogsListPage")
+  .CogsListPage
     Statsbar
-    div(:class="$style.CogsListPage_inner")
+    .CogsListPage_inner
       Infobar
         |These repositories are community made. We have no say over what goes into them.
         br
@@ -9,27 +9,25 @@
       UnapprovedSwitch
       CogsTitle New Cogs
       Loader(v-if="!loaded")
-      div(:class="$style.list" v-if="loaded && latestCogs.length")
+      .list(v-if="loaded && latestCogs.length")
         Cog(v-for="cog in latestCogs" :key="cog._id" :cog="cog")
       div(v-if="loaded && !latestCogs.length") It's pretty empty here for now...
       CogsTitle
         |All Cogs
-        FontAwesomeIcon(
-          :class="$style.shuffle_icon"
+        FontAwesomeIcon.shuffle_icon(
           :icon="shuffleIcon"
           @click="shuffleClick"
           @mouseover="showShuffleTooltip = true"
           @mouseleave="showShuffleTooltip = false"
         )
-        div(
-          :class="[$style.shuffle_tooltip, showShuffleTooltip && $style.visible]"
+        .shuffle_tooltip(
+          :class="showShuffleTooltip && 'visible'"
         ) Shuffle cogs
 
-      div(:class="$style.list" v-if="loaded && cogs.length")
+      .list(v-if="loaded && cogs.length")
         Cog(v-for="cog in cogs.slice(0, 30 * page)" :key="cog._id" :cog="cog")
       div(v-if="loaded && !cogs.length") It's pretty empty here for now...
-      button(
-        :class="$style.show_more"
+      button.show_more(
         v-show="showMoreBtn"
         @click="showMore"
       ) Show More
@@ -112,78 +110,89 @@ export default class CogsListPage extends Vue {
 }
 </script>
 
-<style lang="sass" module>
-$mobile: 767px
-$tiny: 440px
-$blueish: rgba(34,37,42,1)
-$hover: #43464B
-$red: rgb(236,0,26)
-$white: #fcfcfc
+<style scoped>
+.CogsListPage {
+  color: #000;
+  width: 100%;
+}
 
-.CogsListPage
-  color: #000
-  width: 100%
+.CogsListPage_inner {
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
-.CogsListPage_inner
-  display: flex
-  flex-direction: column
-  max-width: 1000px
-  margin: 0 auto
-  padding: 0 20px
+.list {
+  display: grid;
+  grid-template: 130px / repeat(3, 1fr);
+  grid-gap: 10px 20px;
+}
 
-.list
-  display: grid
-  grid-template: 130px / repeat(3, 1fr)
-  @media (max-width: $mobile)
-    grid-template: 130px / repeat(2, 1fr)
-  @media (max-width: $tiny)
-    grid-template: 130px / repeat(1, 1fr)
-  grid-gap: 10px 20px
+.show_more {
+  border: 0;
+  padding: 0 40px;
+  font-size: 11pt;
+  font-weight: 400;
+  outline: none !important;
+  text-transform: uppercase;
+  line-height: 40px;
+  color: var(--white);
+  background: var(--blueish);
+  align-self: center;
+  margin: 15px 0;
+  border-radius: 0;
+  cursor: pointer;
+  transform: scale(1, 1);
+  transition: color 150ms ease, border-radius 150ms ease-out,
+    transform 150ms ease;
+}
 
-.show_more
-  border: 0
-  padding: 0 40px
-  font-size: 11pt
-  font-weight: 400
-  outline: none !important
-  text-transform: uppercase
-  line-height: 40px
-  color: $white
-  background: $blueish
-  align-self: center
-  margin: 15px 0
-  border-radius: 0
-  cursor: pointer
-  transform: scale(1,1)
-  transition: color 150ms ease, border-radius 150ms ease-out, transform 150ms ease
+.show_more:hover {
+  background: var(--dgrey);
+  border-radius: 20px;
+}
 
-  &:hover
-    background: $hover
-    border-radius: 20px
+.show_more:active {
+  transform: scale(0.9, 0.9);
+}
 
-  &:active
-    transform: scale(.9,.9)
+.shuffle_icon {
+  cursor: pointer;
+  opacity: 0.3;
+  margin: 0 0 0 10px;
+  transition: opacity 150ms ease;
+}
 
-.shuffle_icon
-  cursor: pointer
-  opacity: .3
-  margin: 0 0 0 10px
-  transition: opacity 150ms ease
+.shuffle_icon:hover {
+  opacity: 1;
+}
 
-  &:hover
-    opacity: 1
+.shuffle_tooltip {
+  opacity: 0;
+  font-weight: 300;
+  font-size: 1rem;
+  margin: 0 0 0 10px;
+  position: relative;
+  top: -3px;
+  display: inline-block;
+  transition: opacity 150ms ease;
+}
 
-.shuffle_tooltip
-  opacity: 0
-  font-weight: 300
-  font-size: 1rem
-  margin: 0 0 0 10px
-  position: relative
-  top: -3px
-  display: inline-block
-  transition: opacity 150ms ease
+.visible {
+  opacity: 0.4;
+}
 
-.visible
-  opacity: .4
+@media (max-width: var(--tiny)) {
+  .list {
+    grid-template: 130px / repeat(1, 1fr);
+  }
+}
 
+@media (max-width: var(--mobile)) {
+  .list {
+    grid-template: 130px / repeat(2, 1fr);
+  }
+}
 </style>

@@ -1,7 +1,7 @@
 <template lang="pug">
-  div(:class="[$style.Loader, big && $style.big]")
-    FontAwesomeIcon(
-      :class="[$style.icon, inverted && $style.inverted]"
+  .Loader(:class="big && 'big'")
+    FontAwesomeIcon.icon(
+      :class="inverted && 'inverted'"
       spin
       :icon="spinnerIcon"
     )
@@ -27,23 +27,24 @@ export default class Loader extends Vue {
 }
 </script>
 
-<style lang="sass" module>
-$darkish: rgba(#000, .7)
-$inverted: #fcfcfc
+<style scoped>
+.Loader {
+  font-size: 5em;
+  margin: 40px auto;
+}
 
-.Loader
-  font-size: 5em
-  margin: 40px auto
+.big {
+  margin: 50px auto;
+}
 
-.big
-  margin: 50px auto
+.icon {
+  color: var(--ldark);
+  margin: auto;
+  display: block;
+}
 
-.icon
-  color: $darkish
-  margin: auto
-  display: block
-
-.inverted
-  color: $inverted
+.inverted {
+  color: color(--white);
+}
 </style>
 

@@ -1,7 +1,7 @@
 <template lang="pug">
-    router-link(:class="$style.Tag" :to="{ path: '/search/'+tag.name }" append)
-      span(:class="$style.name") {{ tag.name }}
-      span(:class="$style.count") {{ tag.count }}
+    router-link.Tag(:to="{ path: '/search/'+tag.name }" append)
+      span.name {{ tag.name }}
+      span.count {{ tag.count }}
 </template>
 
 <script>
@@ -25,27 +25,26 @@ export default class Tag extends Vue {
 }
 </script>
 
-<style lang="sass" module>
-  $black: #000
-  $light: rgba($black, .6)
-  $blueish: rgba(34,37,42,1)
+<style scoped>
+.Tag {
+  color: var(--black);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid rgba(34, 37, 42, 0.2);
+  transition: border 150ms ease;
+  text-decoration: none;
+}
 
-  .Tag 
-    color: $black
-    display: flex
-    justify-content: space-between
-    padding: 10px
-    border: 1px solid rgba($blueish, .2)
-    transition: border 150ms ease
-    text-decoration: none
+.Tag:hover {
+  border-color: rgba(34, 37, 42, 1);
+}
 
-    &:hover
-      border-color: rgba($blueish, 1)
+.name {
+  font-size: 16px;
+}
 
-  .name 
-    font-size: 16px
-
-  .count 
-    text-align: center
-
+.count {
+  text-align: center;
+}
 </style>

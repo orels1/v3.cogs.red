@@ -102,67 +102,82 @@ export default class Navbar extends Vue {
 }
 </script>
 
-<style lang="sass" scoped>
-$mobile: 767px
-$red: rgb(236,0,26)
-$grey: rgb(114,114,114)
+<style scoped>
+.Navbar {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-.Navbar
-  display: flex
-  width: 100%
-  justify-content: space-between
-  box-shadow: 0 0 10px rgba(0,0,0,.1)
-  @media (max-width: $mobile)
-    flex-direction: column
+.logo {
+  width: 100px;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 20px;
+  text-decoration: none;
+  color: var(--grey);
+}
 
-.logo
-  width: 100px
-  height: 50px
-  line-height: 50px
-  padding: 0 20px
-  text-decoration: none
-  color: $grey
+.logo:hover {
+  color: var(--red);
+}
 
-  &:hover
-    color: $red
+.search {
+}
 
+.search_input {
+  border: none;
+  line-height: 30px;
+  margin-top: 10px;
+  min-width: 300px;
+  outline: none !important;
+  padding: 0 10px;
+}
 
-.search
-  @media (max-width: $mobile)
-    width: 100%
-    display: none
+.search_input:focus {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
 
-.search_input
-  border: none
-  line-height: 30px
-  margin-top: 10px
-  min-width: 300px
-  outline: none !important
-  padding: 0 10px
-  @media (max-width: $mobile)
-    width: 100%
-    padding: 0 20px
+.links {
+  display: flex;
+}
 
-  &:focus
-    border-bottom: 1px solid rgba(0,0,0,.1)
+.link {
+  line-height: 50px;
+  padding: 0 20px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--grey);
+  transition: color 150ms ease;
+}
 
-.links
-  display: flex
-  @media (max-width: $mobile)
-    flex-direction: column
-    display: none
+.link:hover {
+  color: var(--red);
+}
 
-.link
-  line-height: 50px
-  padding: 0 20px
-  text-transform: uppercase
-  text-decoration: none
-  color: $grey
-  transition: color 150ms ease
+.active {
+  color: var(--red);
+}
 
-  &:hover
-    color: $red
+@media (max-width: var(--mobile)) {
+  .Navbar {
+    flex-direction: column;
+  }
 
-.active
-  color: $red
+  .search {
+    width: 100%;
+    display: none;
+  }
+
+  .search_input {
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .links {
+    flex-direction: column;
+    display: none;
+  }
+}
 </style>

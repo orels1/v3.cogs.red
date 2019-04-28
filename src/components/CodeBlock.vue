@@ -1,15 +1,13 @@
 <template lang="pug">
-  div(:class="$style.CodeBlock")
-    input(
-      :class="$style.input"
+  .CodeBlock
+    input.input(
       type="text"
       ref="code"
       :value="code"
       readonly
     )
-    button(:class="[$style.copy, copyState]" @click="copy")
-      FontAwesomeIcon(
-        :class="$style.copy_icon"
+    button.copy(:class="copyState" @click="copy")
+      FontAwesomeIcon.copy_icon(
         :icon="copyIcon"
       )
 </template>
@@ -44,44 +42,47 @@ export default class Cog extends Vue {
 }
 </script>
 
-<style lang="sass" module>
-$black: #000
-$white: #fcfcfc
-$copy: #666D7A
-$copy_active: #434850
-$success: #25A85C
+<style scoped>
+.CodeBlock {
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
 
-.CodeBlock
-  background: rgba($black, .9)
-  display: flex
+  --copy: #666d7a;
+  --copy_active: #434850;
+}
 
-.input
-  padding: 15px 15px
-  background: transparent
-  color: $white
-  border: none
-  flex: 1 0
+.input {
+  padding: 15px 15px;
+  background: transparent;
+  color: var(--white);
+  border: none;
+  flex: 1 0;
+}
 
-  &::selection
-    background: rgba($white, .2)
+.input::selection {
+  background: rgba(252, 252, 252, 0.2);
+}
 
-.copy
-  background: $copy
-  padding: 15px 15px
-  border: 0
-  font-size: 14px
-  cursor: pointer
-  transition: background 150ms ease
+.copy {
+  background: var(--copy);
+  padding: 15px 15px;
+  border: 0;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
 
-  &:hover
-    background: $copy_active
+.copy:hover {
+  background: var(--copy_active);
+}
 
-.success
-  background: $success !important
+.success {
+  background: var(--success) !important;
+}
 
-.copy_icon
-  color: $white
-
+.copy_icon {
+  color: var(--white);
+}
 </style>
 
 

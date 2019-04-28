@@ -1,13 +1,13 @@
 <template lang="pug">
-  div(:class="$style.UserPage")
+  .UserPage
     Databar(:source="user" type="user")
     Loader(v-if="!loaded")
-    div(:class="$style.UserPage_inner" v-if="loaded")
+    .UserPage_inner( v-if="loaded")
       CogTitle Repos
-      div(:class="$style.list" v-if="loaded")
+      .list(v-if="loaded")
         Cog(v-for="repo in userRepos" :key="repo.name" :cog="repo")
       CogTitle Cogs
-      div(:class="$style.list" v-if="loaded")
+      .list(v-if="loaded")
         Cog(v-for="cog in userCogs" :key="cog.name" :cog="cog")
 </template>
 
@@ -82,41 +82,49 @@ export default class UserPage extends Vue {
 }
 </script>
 
-<style lang="sass" module>
-$mobile: 767px
-$tiny: 440px
-$darkish: rgba(#000, .7)
-$white: #fcfcfc
-$lred: #D5413E
+<style scoped>
+.UserPage {
+  width: 100%;
+  color: #000;
+}
 
-.UserPage
-  width: 100%
-  color: #000
+.UserPage_inner {
+  max-width: 1000px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
 
-.UserPage_inner
-  max-width: 1000px
-  padding: 0 20px
-  margin: 0 auto
+.text {
+  color: var(--lblack);
+}
 
-.text
-  color: $darkish
+.text a {
+  color: var(--lred);
+  text-decoration: underline;
+  text-decoration-color: rgba(213, 65, 62, 0);
+  transition: text-decoration-color 150ms ease;
+}
 
-  a
-    color: $lred
-    text-decoration: underline
-    text-decoration-color: rgba($lred, 0)
-    transition: text-decoration-color 150ms ease
+.text a:hover {
+  text-decoration-color: rgba(213, 65, 62, 0.8);
+}
 
-    &:hover
-      text-decoration-color: rgba($lred, .8)
+.list {
+  display: grid;
+  grid-template: 130px / repeat(3, 1fr);
+  grid-gap: 10px 20px;
+}
 
-.list
-  display: grid
-  grid-template: 130px / repeat(3, 1fr)
-  @media (max-width: $mobile)
-    grid-template: 130px / repeat(2, 1fr)
-  @media (max-width: $tiny)
-    grid-template: 130px / repeat(1, 1fr)
-  grid-gap: 10px 20px
+@media (max-width: var(--tiny)) {
+  .list {
+    grid-template: 130px / repeat(1, 1fr);
+  }
+}
+
+@media (max-width: var(--mobile)) {
+  .list {
+    grid-template: 130px / repeat(2, 1fr);
+  }
+}
 </style>
 
