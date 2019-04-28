@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueHotkey from 'v-hotkey';
+import VueMarkdown from 'vue-markdown';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import {
@@ -33,6 +34,7 @@ library.add(
 );
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
+Vue.component('vue-markdown', VueMarkdown);
 
 Vue.config.productionTip = false;
 

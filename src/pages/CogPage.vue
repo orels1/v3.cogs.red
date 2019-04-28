@@ -12,7 +12,7 @@
          it was not checked by members of either Red-DiscordBot or Cogs-Support staff
          and it can contain anything.
       CogTitle Description
-      VueMarkdown.text(:source="cog.description")
+      vue-markdown.text(:source="cog.description")
       CogTitle Installation
       p.text.
         Replace [p] with your bot's prefix and use these commands
@@ -72,7 +72,6 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { mapState } from 'vuex';
 import find from 'lodash/find';
-import VueMarkdown from 'vue-markdown';
 import Loader from '@/components/Loader';
 import Infobar from '@/components/Infobar';
 import Title from '@/components/Title';
@@ -86,7 +85,6 @@ import c from '@/constants';
     CogTitle: Title,
     Databar,
     CodeBlock,
-    VueMarkdown,
     Loader,
   },
   computed: mapState(['cogs', 'settings']),
