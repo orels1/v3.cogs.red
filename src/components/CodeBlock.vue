@@ -76,5 +76,3 @@ export default class Cog extends Vue {
   color: var(--white);
 }
 </style>
-
-

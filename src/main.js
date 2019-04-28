@@ -14,7 +14,7 @@ import {
   faTimes,
   faRandom,
 } from '@fortawesome/pro-light-svg-icons';
-import App from './App.vue';
+import App from './App';
 import router from './router';
 import store from './store';
 import './registerServiceWorker';

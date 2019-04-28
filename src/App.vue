@@ -22,11 +22,6 @@ export default class App extends Vue { }
 </script>
 
 <style scoped>
-body {
-  margin: 0;
-  scroll-behavior: smooth;
-}
-
 #app {
   font-family: "Lato", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -50,6 +45,11 @@ body {
 
 <style>
 @import url("https://fonts.googleapis.com/css?family=Lato:300,400,700,900");
+
+body {
+  margin: 0;
+  scroll-behavior: smooth;
+}
 
 :root {
   --black: #000;

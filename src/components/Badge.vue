@@ -41,5 +41,3 @@ export default class Badge extends Vue {
   background: #e91f1f;
 }
 </style>
-
-

@@ -8,9 +8,9 @@
         level="danger"
         title="Use at your own risk!"
       ).
-        This is a cog from an unapproved repo, 
-        it was not checked by members of either Red-DiscordBot or Cogs-Support staff 
-        and it can contain anything.
+        This is a cog from an unapproved repo,
+         it was not checked by members of either Red-DiscordBot or Cogs-Support staff
+         and it can contain anything.
       CogTitle Description
       VueMarkdown.text(:source="cog.description")
       CogTitle Installation
@@ -24,11 +24,14 @@
         VueMarkdown.text.readme(:class="[$style.text, $style.readme]" :source="cog.readme")
       CogTitle Source
       p.text.
-        If you're interested in how this cog works, you can #[a(:href='githubLink' target="_blank") look at the source].
+        If you're interested in how this cog works,
+        you can #[a(:href='githubLink' target="_blank") look at the source].
       CogTitle(id="report") Report cog
       p.text
-        |If you think this cog abuses discord api, performs malicious actions or breaks a license, 
-        span.interactive(@click="showReportModal" ) please report it to our QA team by clicking here.
+        |If you think this cog abuses discord api, performs malicious actions or breaks a license,
+        |{{' '}}
+        span.interactive(@click="showReportModal" )
+          | please report it to our QA team by clicking here.
       transition(name="fade")
         .report_block(v-if="reportModal")
           p.text Please select the report type
@@ -40,13 +43,20 @@
               @click="selectType(reportType.value)"
             ) {{reportType.label}}
           transition(name="fade")
-            textarea.report_comment(v-model="reportComment" v-if="selectedType" placeholder="Add a comment to help QA team identify the issue")
+            textarea.report_comment(
+              v-model="reportComment"
+              v-if="selectedType"
+              placeholder="Add a comment to help QA team identify the issue"
+            )
           transition(name="fade")
             .report_buttons(v-if="selectedType")
               .report_confirm(@click="report")
                 font-awesome-icon.confirm_icon(:icon="['fal', 'check']")
                 .confirm_text Confirm
-              .report_confirm.report_cancel(:class="[$style.report_confirm, $style.report_cancel]" @click="reportCancel")
+              .report_confirm.report_cancel(
+                :class="[$style.report_confirm, $style.report_cancel]"
+                @click="reportCancel"
+              )
                 font-awesome-icon.confirm_icon.cancel_icon(
                   :class="[$style.confirm_icon, $style.cancel_icon]"
                   :icon="['fal', 'times']"
@@ -102,9 +112,7 @@ export default class CogPage extends Vue {
   }
 
   get repoAddLine() {
-    return `[p]cog repo add ${this.$route.params.repo} https://github.com/${
-      this.$route.params.user
-      }/${this.$route.params.repo}`;
+    return `[p]cog repo add ${this.$route.params.repo} https://github.com/${this.$route.params.user}/${this.$route.params.repo}`;
   }
 
   get cogAddLine() {
@@ -116,7 +124,7 @@ export default class CogPage extends Vue {
   }
 
   async report() {
-    const params = this.$route.params;
+    const { params } = this.$route;
     const resp = await fetch(`${c.COGS}/${params.user}/${params.repo}/${params.cog}/${params.branch}/report`, {
       method: 'POST',
       body: JSON.stringify({
@@ -149,16 +157,15 @@ export default class CogPage extends Vue {
   }
 
   async created() {
-    const params = this.$route.params;
+    const { params } = this.$route;
     const unapprovedQuery = this.settings.unapproved ? '?showUnapproved=true' : '';
     try {
       if (this.cogs.length > 0) {
         const cog = find(
           this.cogs,
-          i =>
-            i.name === params.cog &&
-            i.author.username === params.user &&
-            i.repo.name === params.repo,
+          i => i.name === params.cog
+            && i.author.username === params.user
+            && i.repo.name === params.repo,
         );
         if (cog) {
           this.cog = cog;
@@ -166,7 +173,9 @@ export default class CogPage extends Vue {
           return;
         }
       }
-      const resp = await fetch(`${c.COGS}/${params.user}/${params.repo}/${params.branch}/${params.cog}${unapprovedQuery}`);
+      const resp = await fetch(
+        `${c.COGS}/${params.user}/${params.repo}/${params.branch}/${params.cog}${unapprovedQuery}`,
+      );
       const json = await resp.json();
       this.cog = json;
       this.loaded = true;
@@ -209,8 +218,10 @@ export default class CogPage extends Vue {
   background-color: hsl(0, 0%, 95%);
 }
 
-.interactivecolor: var(--lred);
-cursor: pointer;
+.interactive {
+  color: var(--lred);
+  cursor: pointer;
+}
 
 .report_types {
   display: flex;
@@ -337,4 +348,3 @@ cursor: pointer;
   opacity: 1;
 }
 </style>
-
