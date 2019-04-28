@@ -1,29 +1,23 @@
 <template lang="pug">
   .Loader(:class="big && 'big'")
-    FontAwesomeIcon.icon(
+    font-awesome-icon.icon(
       :class="inverted && 'inverted'"
       spin
-      :icon="spinnerIcon"
+      :icon="['fal', 'spinner-third']"
     )
 </template>
 
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import FontAwesomeIcon from '@fortawesome/vue-fontawesome';
-import faSpinner from '@fortawesome/fontawesome-pro-light/faSpinnerThird';
 
 @Component({
-  components: {
-    FontAwesomeIcon,
-  },
   props: {
     inverted: Boolean,
     big: Boolean,
   },
 })
 export default class Loader extends Vue {
-  spinnerIcon = faSpinner;
 }
 </script>
 

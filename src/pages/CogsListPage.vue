@@ -14,8 +14,8 @@
       div(v-if="loaded && !latestCogs.length") It's pretty empty here for now...
       CogsTitle
         |All Cogs
-        FontAwesomeIcon.shuffle_icon(
-          :icon="shuffleIcon"
+        font-awesome-icon.shuffle_icon(
+          :icon="['fal', 'random']"
           @click="shuffleClick"
           @mouseover="showShuffleTooltip = true"
           @mouseleave="showShuffleTooltip = false"
@@ -39,8 +39,6 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { mapActions, mapState } from 'vuex';
 import sortBy from 'lodash/sortBy';
-import FontAwesomeIcon from '@fortawesome/vue-fontawesome';
-import faRandom from '@fortawesome/fontawesome-pro-light/faRandom';
 import Loader from '@/components/Loader';
 import Statsbar from '@/components/Statsbar';
 import Infobar from '@/components/Infobar';
@@ -56,7 +54,6 @@ import 'animate.css';
     CogsTitle: Title,
     Cog,
     Loader,
-    FontAwesomeIcon,
     UnapprovedSwitch,
   },
   methods: {
@@ -67,7 +64,6 @@ import 'animate.css';
 export default class CogsListPage extends Vue {
   loaded = false;
   page = 1;
-  shuffleIcon = faRandom;
   showShuffleTooltip = false;
 
   get showMoreBtn() {

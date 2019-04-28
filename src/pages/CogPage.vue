@@ -44,14 +44,12 @@
           transition(name="fade")
             .report_buttons(v-if="selectedType")
               .report_confirm(@click="report")
-                FontAwesomeIcon.confirm_icon(
-                  :icon="checkIcon"
-                )
+                font-awesome-icon.confirm_icon(:icon="['fal', 'check']")
                 .confirm_text Confirm
               .report_confirm.report_cancel(:class="[$style.report_confirm, $style.report_cancel]" @click="reportCancel")
-                FontAwesomeIcon.confirm_icon.cancel_icon(
+                font-awesome-icon.confirm_icon.cancel_icon(
                   :class="[$style.confirm_icon, $style.cancel_icon]"
-                  :icon="cancelIcon"
+                  :icon="['fal', 'times']"
                 )
                 .confirm_text Cancel
       transition(name="fade")
@@ -71,9 +69,6 @@ import Title from '@/components/Title';
 import Databar from '@/components/Databar';
 import CodeBlock from '@/components/CodeBlock';
 import c from '@/constants';
-import FontAwesomeIcon from '@fortawesome/vue-fontawesome';
-import faCheck from '@fortawesome/fontawesome-pro-light/faCheck';
-import faTimes from '@fortawesome/fontawesome-pro-light/faTimes';
 
 @Component({
   components: {
@@ -83,13 +78,10 @@ import faTimes from '@fortawesome/fontawesome-pro-light/faTimes';
     CodeBlock,
     VueMarkdown,
     Loader,
-    FontAwesomeIcon,
   },
   computed: mapState(['cogs', 'settings']),
 })
 export default class CogPage extends Vue {
-  checkIcon = faCheck;
-  cancelIcon = faTimes;
   loaded = false;
   error = null;
   cog = {

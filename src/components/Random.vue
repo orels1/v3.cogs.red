@@ -8,25 +8,19 @@
         .block
           .author
             .icon
-              FontAwesomeIcon(:icon="authorIcon")
+              font-awesome-icon(:icon="['fal', 'user']")
             div {{ data.author.username }}
           .tags(v-if="data.tags.length > 0")
             .icon
-              FontAwesomeIcon(:icon="tagsIcon")
+              font-awesome-icon(:icon="['fal', 'tags']")
             div {{ data.tags.slice(0,3).join(', ') }}
 </template>
 
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import FontAwesomeIcon from '@fortawesome/vue-fontawesome';
-import faTags from '@fortawesome/fontawesome-pro-light/faTags';
-import faUser from '@fortawesome/fontawesome-pro-light/faUser';
 
 @Component({
-  components: {
-    FontAwesomeIcon,
-  },
   props: {
     data: {
       type: Object,
@@ -39,8 +33,6 @@ import faUser from '@fortawesome/fontawesome-pro-light/faUser';
   },
 })
 export default class Random extends Vue {
-  tagsIcon = faTags;
-  authorIcon = faUser;
 }
 </script>
 

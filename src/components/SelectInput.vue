@@ -13,22 +13,17 @@
         :optionKeyProp="option[optionKeyProp]"
         :value="option.value"
       ) {{option.label}}
-    fontawesome-icon.icon(
+    font-awesome-icon.icon(
       :class="[active && 'active']"
-      :icon="icon"
+      :icon="['fal', 'caret-down']"
     )
 </template>
 
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import FontAwesomeIcon from '@fortawesome/vue-fontawesome';
-import faCaretDown from '@fortawesome/fontawesome-pro-light/faCaretDown';
 
 @Component({
-  components: {
-    'fontawesome-icon': FontAwesomeIcon,
-  },
   props: {
     value: String,
     placeholder: String,
@@ -37,7 +32,6 @@ import faCaretDown from '@fortawesome/fontawesome-pro-light/faCaretDown';
   },
 })
 export default class SelectInput extends Vue {
-  icon = faCaretDown;
   active = false;
 
   get label() {

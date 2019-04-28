@@ -1,9 +1,38 @@
 import Vue from 'vue';
 import VueHotkey from 'v-hotkey';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import {
+  faPaste,
+  faAngleRight,
+  faTags,
+  faCommentAltExclamation,
+  faSpinnerThird,
+  faUser,
+  faCaretDown,
+  faCheck,
+  faTimes,
+  faRandom,
+} from '@fortawesome/pro-light-svg-icons';
 import App from './App.vue';
 import router from './router';
 import store from './store';
 import './registerServiceWorker';
+
+library.add(
+  faPaste,
+  faAngleRight,
+  faTags,
+  faCommentAltExclamation,
+  faSpinnerThird,
+  faUser,
+  faCaretDown,
+  faCheck,
+  faTimes,
+  faRandom,
+);
+
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.config.productionTip = false;
 

@@ -12,9 +12,9 @@
               :to="'/' + $route.path.split('/').slice(1, index + (index > 1 ? 3 : 2)).join('/')"
             ) {{path}}
             .separator
-              FontAwesomeIcon(
+              font-awesome-icon(
                 v-show="index !== (crumbsDepth[type] - 2)"
-                :icon="separatorIcon"
+                :icon="['fal', 'angle-right']"
               )
         Badge.type(
           v-if="type !== 'user' && (source.repo || source.type)"
@@ -28,13 +28,13 @@
         .tags(v-if="type !== 'user' && source.tags.length > 0")
           .report(@click="scrollToReport")
             .report_text(:class="reportVisible && 'shown'") report cog
-            FontAwesomeIcon.tags_icon.report_icon(
+            font-awesome-icon.tags_icon.report_icon(
               v-if="type === 'cog'"
-              :icon="reportIcon"
+              :icon="['fal', 'comment-alt-exclamation']"
               @mouseenter="reportVisible = true"
               @mouseleave="reportVisible = false"
             )
-          FontAwesomeIcon.tags_icon(:icon="tagsIcon")
+          font-awesome-icon.tags_icon(:icon="['fal', 'tags']")
           .tag(v-for="tag in source.tags.slice(0, 3)" :key="tag")
             router-link.tag_link(:to="'/search/' + tag") {{tag}}
     
@@ -44,15 +44,10 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import Badge from '@/components/Badge';
-import FontAwesomeIcon from '@fortawesome/vue-fontawesome';
-import faTags from '@fortawesome/fontawesome-pro-light/faTags';
-import faAngleRight from '@fortawesome/fontawesome-pro-light/faAngleRight';
-import faCommentAltExclamation from '@fortawesome/fontawesome-pro-light/faCommentAltExclamation';
 
 @Component({
   components: {
     Badge,
-    FontAwesomeIcon,
   },
   props: {
     source: Object,
@@ -60,9 +55,6 @@ import faCommentAltExclamation from '@fortawesome/fontawesome-pro-light/faCommen
   },
 })
 export default class Databar extends Vue {
-  tagsIcon = faTags;
-  separatorIcon = faAngleRight;
-  reportIcon = faCommentAltExclamation;
   reportVisible = false;
 
   crumbsDepth = {

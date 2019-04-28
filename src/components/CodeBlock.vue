@@ -7,27 +7,19 @@
       readonly
     )
     button.copy(:class="copyState" @click="copy")
-      FontAwesomeIcon.copy_icon(
-        :icon="copyIcon"
-      )
+      font-awesome-icon.copy_icon(:icon="['fal', 'paste']")
 </template>
 
 <script>
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import FontAwesomeIcon from '@fortawesome/vue-fontawesome';
-import faPaste from '@fortawesome/fontawesome-pro-light/faPaste';
 
 @Component({
-  components: {
-    FontAwesomeIcon,
-  },
   props: {
     code: { type: String, default: '' },
   },
 })
 export default class Cog extends Vue {
-  copyIcon = faPaste;
   copyState = '';
 
   copy() {

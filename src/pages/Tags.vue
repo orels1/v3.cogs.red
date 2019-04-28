@@ -60,7 +60,7 @@ export default class TagsPage extends Vue {
 
 .list {
   display: grid;
-  grid-template: 41px / repeat(3, 1fr)
+  grid-template: 41px / repeat(3, 1fr);
   grid-gap: 10px 20px;
 }
 
@@ -71,6 +71,5 @@ export default class TagsPage extends Vue {
 @media (max-width: var(--mobile)) {
   grid-template: 41px / repeat(2, 1fr);
 }
-
 </style>
 

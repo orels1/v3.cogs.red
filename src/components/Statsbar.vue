@@ -51,7 +51,7 @@ import RandomBlock from '@/components/Random';
 export default class Statsbar extends Vue {
   loaded = false;
 
-  get randomCogIndex {
+  get randomCogIndex() {
     if (!this.cogs.length) return 0;
     return random(0, this.cogs.length - 1);
   }
@@ -94,7 +94,7 @@ export default class Statsbar extends Vue {
   width: 100%;
   max-width: 1000px;
   display: grid;
-  grid-template-columns: .5fr repeat(3, 1fr);
+  grid-template-columns: 0.5fr repeat(3, 1fr);
   grid-template-rows: repeat(2, 100px);
   grid-gap: 10px 20px;
   padding: 0 20px;
@@ -110,7 +110,7 @@ export default class Statsbar extends Vue {
   grid-column-start: 1;
   grid-row-start: 2;
 }
-  
+
 .number_block {
   color: var(--white);
   display: flex;
@@ -130,7 +130,7 @@ export default class Statsbar extends Vue {
 }
 
 .box_block_content {
-  border: 1px solid rgba(var(--white), .3);
+  border: 1px solid rgba(var(--white), 0.3);
   padding: 10px;
   margin: 10px 0 0 0;
   transition: border 150ms ease;
@@ -151,7 +151,7 @@ export default class Statsbar extends Vue {
 }
 
 .list_item {
-  border: 1px solid rgba(252, 252, 252, .3);
+  border: 1px solid rgba(252, 252, 252, 0.3);
   padding: 5px 10px;
   transition: border 150ms ease;
   font-size: 10pt;
@@ -164,7 +164,7 @@ export default class Statsbar extends Vue {
 }
 
 .list_item_all {
-  border: 1px solid rgba(252, 252, 252, .3);
+  border: 1px solid rgba(252, 252, 252, 0.3);
   padding: 6px 10px 5px;
   transition: border 150ms ease;
   font-size: 10pt;
@@ -185,8 +185,8 @@ export default class Statsbar extends Vue {
   }
 
   .bottom_left {
-    grid-column-start: 2
-    grid-row-start: 1
+    grid-column-start: 2;
+    grid-row-start: 1;
   }
 
   .double_height {
