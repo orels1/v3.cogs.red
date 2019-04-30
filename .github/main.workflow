@@ -11,5 +11,6 @@ action "Filters for GitHub Actions" {
 action "now" {
   uses = "actions/zeit-now@5c51b26db987d15a0133e4c760924896b4f1512f"
   needs = ["Filters for GitHub Actions"]
+  args = "-e MODE=stage"
   secrets = ["ZEIT_TOKEN"]
 }

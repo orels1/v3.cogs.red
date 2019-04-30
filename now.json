@@ -3,7 +3,7 @@
   "name": "v3.cogs.red",
   "builds": [
     {
-      "src": "package.json",
+      "src": "now-build.sh",
       "use": "@now/static-build"
     }
   ],
