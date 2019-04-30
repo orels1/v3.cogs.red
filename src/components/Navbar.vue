@@ -48,7 +48,6 @@ import Component from 'vue-class-component';
 export default class Navbar extends Vue {
   menu = [
     { to: '/', key: 'cogs', name: 'Cogs' },
-    { to: '/addRepo', key: 'addRepo', name: 'Add Repo' },
   ];
 
   search = '';
