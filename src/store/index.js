@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import Vue from 'vue';
 import Vuex from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
@@ -59,19 +60,34 @@ const store = new Vuex.Store({
   },
   actions: {
     async fetchCogs({ commit, state }) {
-      const resp = await fetch(formattedUrl(c.COGS, state));
-      const json = await resp.json();
-      commit(LOAD_COGS, { cogs: shuffle(json.results) });
+      try {
+        const resp = await fetch(formattedUrl(c.COGS, state));
+        const json = await resp.json();
+        commit(LOAD_COGS, { cogs: shuffle(json.results) });
+      } catch (e) {
+        console.log(e);
+        commit(LOAD_COGS, { cogs: [] });
+      }
     },
     async fetchRepos({ commit, state }) {
-      const resp = await fetch(formattedUrl(c.REPOS, state));
-      const json = await resp.json();
-      commit(LOAD_REPOS, { repos: sortBy(json.results, i => i.type) });
+      try {
+        const resp = await fetch(formattedUrl(c.REPOS, state));
+        const json = await resp.json();
+        commit(LOAD_REPOS, { repos: sortBy(json.results, i => i.type) });
+      } catch (e) {
+        console.log(e);
+        commit(LOAD_REPOS, { repos: [] });
+      }
     },
     async fetchTags({ commit }) {
-      const resp = await fetch(c.TAGS);
-      const json = await resp.json();
-      commit(LOAD_TAGS, { tags: json.results });
+      try {
+        const resp = await fetch(c.TAGS);
+        const json = await resp.json();
+        commit(LOAD_TAGS, { tags: json.results });
+      } catch (e) {
+        console.log(e);
+        commit(LOAD_TAGS, { tags: [] });
+      }
     },
     shuffleCogs({ commit }, cogs) {
       commit(SHUFFLE_COGS, { cogs: shuffle(cogs) });
