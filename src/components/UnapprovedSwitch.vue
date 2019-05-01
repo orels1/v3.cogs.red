@@ -1,7 +1,7 @@
 <template lang="pug">
   .switch
-    .button
-      .text(@click="modal = true")
+    .button(@click="modal = true")
+      .text
         span(v-if="settings.unapproved") Showing unapproved repositories
         span(v-if="!settings.unapproved") Show Unapproved repositories and cogs
     .modal(v-if="modal" :class="[modal && 'shown']")
