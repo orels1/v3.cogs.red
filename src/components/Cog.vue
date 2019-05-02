@@ -9,8 +9,8 @@
       .extra_info
         small.version(v-if="cog.version || cog.botVersion") [v{{cog.version || cog.botVersion[0]}}]
         Badge.type(
-          v-if="cog.repo.type"
-          :type="cog.repo.type"
+          v-if="cog.repo ? cog.repo.type : cog.type"
+          :type="cog.repo ? cog.repo.type : cog.type"
         )
 </template>
 <script>
