@@ -1,6 +1,6 @@
 workflow "Develop Deploy" {
-  resolves = ["now"]
   on = "push"
+  resolves = ["Ilshidur/actions/discord@master"]
 }
 
 action "Filters for GitHub Actions" {
@@ -13,4 +13,9 @@ action "now" {
   needs = ["Filters for GitHub Actions"]
   args = "-b BUILD_MODE=stage"
   secrets = ["ZEIT_TOKEN"]
+}
+
+action "Ilshidur/actions/discord@master" {
+  uses = "Ilshidur/actions/discord@master"
+  needs = ["now"]
 }
