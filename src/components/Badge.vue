@@ -1,5 +1,5 @@
 <template lang="pug">
-  .Badge(:class="color") {{ content }}
+  .Badge(:class="type") {{ content }}
 </template>
 
 <script>
@@ -15,10 +15,6 @@ import Component from 'vue-class-component';
 export default class Badge extends Vue {
   get content() {
     return this.type ? this.type : this.text;
-  }
-
-  get color() {
-    return this.type ? this.$style[this.type] : '';
   }
 }
 </script>
