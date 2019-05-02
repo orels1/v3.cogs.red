@@ -1,6 +1,6 @@
 workflow "Develop Deploy" {
   on = "push"
-  resolves = ["appleboy/discord-action@master"]
+  resolves = ["ping discord"]
 }
 
 action "Filters for GitHub Actions" {
@@ -15,12 +15,9 @@ action "now" {
   secrets = ["ZEIT_TOKEN"]
 }
 
-action "appleboy/discord-action@master" {
-  uses = "appleboy/discord-action@master"
+action "ping discord" {
+  uses = "swinton/httpie.action@8ab0a0e926d091e0444fcacd5eb679d2e2d4ab3d"
   needs = ["now"]
-  secrets = ["WEBHOOK_ID", "WEBHOOK_TOKEN"]
-  args = "v3.cogs.red was successfully deployed to [v3cogsred.orels1.now.sh](https://v3cogsred.orels1.now.sh/)"
-  env = {
-    COLOR = "#25a85c"
-  }
+  secrets = ["WEBHOOK_URL"]
+  args = "[\"POST\", \"$WEBHOOK_URL\", \"embeds:=[{\\\"title\\\": \\\"v3.cogs.red [stage] deployed!\\\", \\\"description\\\": \\\"Check it out at [v3cogsred.orels1.now.sh](https://v3cogsred.orels1.now.sh)\\\", \\\"color\\\":2467932}]\"]"
 }
