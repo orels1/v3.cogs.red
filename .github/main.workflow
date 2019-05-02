@@ -19,5 +19,5 @@ action "ping discord" {
   uses = "swinton/httpie.action@8ab0a0e926d091e0444fcacd5eb679d2e2d4ab3d"
   needs = ["now"]
   secrets = ["WEBHOOK_URL"]
-  args = "POST \"$WEBHOOK_URL\" embeds:='[{\"title\": \"v3.cogs.red [stage] deployed!\", \"description\": \"Check it out at [v3cogsred.orels1.now.sh](https://v3cogsred.orels1.now.sh)\", \"color\":2467932}]'"
+  args = "POST \"$WEBHOOK_URL\" embeds:='[{\"title\": \"panel.cogs.red [stage] deployed!\", \"description\": \"Check it out at [panelcogsred.orels1.now.sh](https://panelcogsred.orels1.now.sh)\", \"color\":2467932}]'"
 }
