@@ -1,6 +1,6 @@
 workflow "Develop Deploy" {
   on = "push"
-  resolves = ["new-action"]
+  resolves = ["appleboy/discord-action@master"]
 }
 
 action "Filters for GitHub Actions" {
@@ -15,7 +15,12 @@ action "now" {
   secrets = ["ZEIT_TOKEN"]
 }
 
-action "new-action" {
-  uses = "owner/repo/path@ref"
+action "appleboy/discord-action@master" {
+  uses = "appleboy/discord-action@master"
   needs = ["now"]
+  secrets = ["WEBHOOK_ID", "WEBHOOK_TOKEN"]
+  args = "v3.cogs.red was successfully deployed to [v3cogsred.orels1.now.sh](https://v3cogsred.orels1.now.sh/)"
+  env = {
+    COLOR = "#25a85c"
+  }
 }
