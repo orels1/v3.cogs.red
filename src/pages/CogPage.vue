@@ -21,7 +21,7 @@
       CodeBlock(:code="cogAddLine")
       div(v-if="cog.readme")
         CogTitle Readme
-        VueMarkdown.text.readme(:class="[$style.text, $style.readme]" :source="cog.readme")
+        vue-markdown.text.readme(:class="[$style.text, $style.readme]" :source="cog.readme")
       CogTitle Source
       p.text.
         If you're interested in how this cog works,

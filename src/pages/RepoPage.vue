@@ -19,7 +19,7 @@
       CodeBlock(:code="repoAddLine")
       div(v-if="repo.readme")
         CogTitle Readme
-        VueMarkdown.text.readme(:source="repo.readme")
+        vue-markdown.text.readme(:source="repo.readme")
       CogTitle Source
       p.text(v-if="loaded").
         If you're interested in this repo's contents,
