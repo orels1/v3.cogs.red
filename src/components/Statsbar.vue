@@ -72,9 +72,10 @@ export default class Statsbar extends Vue {
   }
 
   async created() {
-    if (this.tags.length === 0) {
-      await this.fetchTags();
-    }
+    // Removed until tags return something :)
+    // if (this.tags.length === 0) {
+    //   await this.fetchTags();
+    // }
     this.loaded = true;
   }
 }
