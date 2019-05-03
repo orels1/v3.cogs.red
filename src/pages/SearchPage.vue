@@ -36,7 +36,7 @@ export default class SearchPage extends Vue {
         return;
       }
       const json = await resp.json();
-      this.filteredCogs = json.results.list;
+      this.filteredCogs = json.results;
       this.notFound = false;
     } catch (e) {
       // console.error(e);
@@ -53,7 +53,7 @@ export default class SearchPage extends Vue {
           return;
         }
         const json = await resp.json();
-        this.filteredCogs = json.results.list;
+        this.filteredCogs = json.results;
         this.notFound = false;
       } catch (e) {
         // console.error(e);
