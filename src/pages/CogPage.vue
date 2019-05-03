@@ -21,7 +21,7 @@
       CodeBlock(:code="cogAddLine")
       div(v-if="cog.readme")
         CogTitle Readme
-        vue-markdown.text.readme(:class="[$style.text, $style.readme]" :source="cog.readme")
+        vue-markdown.text.readme(:source="cog.readme")
       CogTitle Source
       p.text.
         If you're interested in how this cog works,
@@ -54,11 +54,9 @@
                 font-awesome-icon.confirm_icon(:icon="['fal', 'check']")
                 .confirm_text Confirm
               .report_confirm.report_cancel(
-                :class="[$style.report_confirm, $style.report_cancel]"
                 @click="reportCancel"
               )
                 font-awesome-icon.confirm_icon.cancel_icon(
-                  :class="[$style.confirm_icon, $style.cancel_icon]"
                   :icon="['fal', 'times']"
                 )
                 .confirm_text Cancel
