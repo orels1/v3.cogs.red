@@ -21,6 +21,22 @@
       "dest": "/img/$1"
     },
     {
+      "src": "^/manifest.json",
+      "dest": "/manifest.json"
+    },
+    {
+      "src": "^/robots.txt",
+      "dest": "/robots.txt"
+    },
+    {
+      "src": "^/logo.png",
+      "dest": "/logo.png"
+    },
+    {
+      "src": "^/(.*).js",
+      "dest": "/$1.js"
+    },
+    {
       "src": ".*",
       "dest": "/index.html"
     }
