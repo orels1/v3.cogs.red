@@ -19,6 +19,11 @@ import c from '@/constants';
     Cog,
     PageHeader,
   },
+  watch: {
+    $route(to) {
+      this.searchUpdate(to.params.search);
+    },
+  },
 })
 export default class SearchPage extends Vue {
   filteredCogs = [];
@@ -43,11 +48,10 @@ export default class SearchPage extends Vue {
     }
   }
 
-  // route updates
-  async beforeUpdate() {
-    if (this.$route.params.search !== this.oldSearch) {
+  async searchUpdate(search) {
+    if (search !== this.oldSearch) {
       try {
-        const resp = await fetch(`${c.SEARCH}/${this.$route.params.search}`);
+        const resp = await fetch(`${c.SEARCH}/${search}`);
         if (resp.status === 404) {
           this.notFound = true;
           return;
@@ -58,7 +62,7 @@ export default class SearchPage extends Vue {
       } catch (e) {
         // console.error(e);
       }
-      this.oldSearch = this.$route.params.search;
+      this.oldSearch = search;
     }
   }
 
