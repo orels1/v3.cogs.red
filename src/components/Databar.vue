@@ -222,7 +222,7 @@ export default class Databar extends Vue {
   color: rgba(255, 255, 255, 1);
 }
 
-@media (max-width: var(--mobile)) {
+@media (max-width: 767px) {
   .Databar_inner {
     grid-template: 1fr / 1fr;
   }
@@ -246,7 +246,7 @@ export default class Databar extends Vue {
   }
 }
 
-@media (min-width: var(--desktop)) {
+@media (min-width: 768px) {
   .type {
     margin-left: 20px;
     align-self: center;

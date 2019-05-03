@@ -159,7 +159,7 @@ export default class Navbar extends Vue {
   color: var(--red);
 }
 
-@media (max-width: var(--mobile)) {
+@media (max-width: 767px) {
   .Navbar {
     flex-direction: column;
   }

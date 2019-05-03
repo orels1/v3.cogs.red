@@ -1,17 +1,19 @@
 <template lang="pug">
   router-link.Cog(:to="{ path: `/cogs${cog.links.self}` }" append)
-    .name {{ cog.name }}
-    .description {{ short }}
-    .tags
-      .tag( v-for="tag in cog.tags.slice(0,3)") \#{{ tag }}
-    .info
-      .author {{ cog.author.username }}
-      .extra_info
-        small.version(v-if="cog.version || cog.botVersion") [v{{cog.version || cog.botVersion[0]}}]
-        Badge.type(
-          v-if="cog.repo ? cog.repo.type : cog.type"
-          :type="cog.repo ? cog.repo.type : cog.type"
-        )
+    .top
+      .name {{ cog.name }}
+      .description {{ short }}
+    .bottom
+      .tags
+        .tag( v-for="tag in cog.tags.slice(0,3)") \#{{ tag }}
+      .info
+        .author {{ cog.author.username }}
+        .extra_info
+          small.version(v-if="cog.version || cog.botVersion") [v{{cog.version || cog.botVersion[0]}}]
+          Badge.type(
+            v-if="cog.repo ? cog.repo.type : cog.type"
+            :type="cog.repo ? cog.repo.type : cog.type"
+          )
 </template>
 <script>
 import Vue from 'vue';
@@ -65,10 +67,19 @@ export default class Cog extends Vue {
   border: 1px solid rgba(0, 0, 0, 0);
   transition: border 150ms ease;
   text-decoration: none;
+  height: 105px;
+  box-sizing: border-box;
+  justify-content: space-between;
 }
 
 .Cog:hover {
   border: 1px solid rgba(34, 37, 42, 0.6);
+}
+
+.top,
+.bottom {
+  display: flex;
+  flex-direction: column;
 }
 
 .name {
@@ -78,6 +89,7 @@ export default class Cog extends Vue {
 .description {
   color: var(--light);
   font-size: 14px;
+  min-height: 17px;
 }
 
 .tags {

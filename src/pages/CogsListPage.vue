@@ -122,7 +122,7 @@ export default class CogsListPage extends Vue {
 
 .list {
   display: grid;
-  grid-template: 130px / repeat(3, 1fr);
+  grid-template: 105px / repeat(3, 1fr);
   grid-gap: 10px 20px;
 }
 
@@ -180,13 +180,13 @@ export default class CogsListPage extends Vue {
   opacity: 0.4;
 }
 
-@media (max-width: var(--tiny)) {
+@media (max-width: 440px) {
   .list {
     grid-template: 130px / repeat(1, 1fr);
   }
 }
 
-@media (max-width: var(--mobile)) {
+@media (max-width: 767px) {
   .list {
     grid-template: 130px / repeat(2, 1fr);
   }

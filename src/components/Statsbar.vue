@@ -130,7 +130,7 @@ export default class Statsbar extends Vue {
 }
 
 .box_block_content {
-  border: 1px solid rgba(var(--white), 0.3);
+  border: 1px solid rgba(252, 252, 252, 0.3);
   padding: 10px;
   margin: 10px 0 0 0;
   transition: border 150ms ease;
@@ -178,7 +178,7 @@ export default class Statsbar extends Vue {
   border: 1px solid rgba(252, 252, 252, 1);
 }
 
-@media (max-width: var(--mobile)) {
+@media (max-width: 767px) {
   .Statsbar_inner {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 100px repeat(3, 210px);
@@ -194,7 +194,7 @@ export default class Statsbar extends Vue {
   }
 }
 
-@media (min-width: var(--desktop)) {
+@media (min-width: 768px) {
   .double_height {
     grid-row-start: 1;
     grid-row-end: span 2;

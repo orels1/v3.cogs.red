@@ -115,13 +115,13 @@ export default class UserPage extends Vue {
   grid-gap: 10px 20px;
 }
 
-@media (max-width: var(--tiny)) {
+@media (max-width: 440px) {
   .list {
     grid-template: 130px / repeat(1, 1fr);
   }
 }
 
-@media (max-width: var(--mobile)) {
+@media (max-width: 767px) {
   .list {
     grid-template: 130px / repeat(2, 1fr);
   }

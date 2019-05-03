@@ -49,6 +49,7 @@ export default class Cog extends Vue {
   color: var(--white);
   border: none;
   flex: 1 0;
+  outline: none !important;
 }
 
 .input::selection {

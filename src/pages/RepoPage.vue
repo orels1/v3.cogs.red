@@ -160,15 +160,35 @@ export default class RepoPage extends Vue {
   background-color: hsl(0, 0%, 95%);
 }
 
-@media (max-width: var(--tiny)) {
+@media (max-width: 440px) {
   .list {
     grid-template: 130px / repeat(1, 1fr);
   }
 }
 
-@media (max-width: var(--mobile)) {
+@media (max-width: 767px) {
   .list {
     grid-template: 130px / repeat(2, 1fr);
   }
+}
+</style>
+
+<style>
+.text p a,
+.readme a {
+  color: var(--lred);
+  text-decoration: underline;
+  text-decoration-color: rgba(213, 65, 62, 0);
+  transition: text-decoration-color 150ms ease;
+}
+
+.text p a:visited,
+.readme a:visited {
+  color: var(--grey);
+}
+
+.text p a:hover,
+.readme a:hover {
+  text-decoration-color: rgba(213, 65, 62, 0.8);
 }
 </style>

@@ -63,11 +63,11 @@ export default class TagsPage extends Vue {
   grid-gap: 10px 20px;
 }
 
-@media (max-width: var(--tiny)) {
+@media (max-width: 440px) {
   grid-template: 41px / repeat(1, 1fr);
 }
 
-@media (max-width: var(--mobile)) {
+@media (max-width: 767px) {
   grid-template: 41px / repeat(2, 1fr);
 }
 </style>

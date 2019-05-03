@@ -94,13 +94,13 @@ export default class SearchPage extends Vue {
   color: var(--lblack);
 }
 
-@media (max-width: var(--tiny)) {
+@media (max-width: 440px) {
   .list {
     grid-template: 130px / repeat(1, 1fr);
   }
 }
 
-@media (max-width: var(--mobile)) {
+@media (max-width: 767px) {
   .list {
     grid-template: 130px / repeat(2, 1fr);
   }

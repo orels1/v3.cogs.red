@@ -198,14 +198,16 @@ export default class CogPage extends Vue {
   color: var(--darkish);
 }
 
-.text a {
+.text a,
+.text p a {
   color: var(--lred);
   text-decoration: underline;
   text-decoration-color: rgba(213, 65, 62, 0);
   transition: text-decoration-color 150ms ease;
 }
 
-.text a:hover {
+.text a:hover,
+.text p a:hover {
   text-decoration-color: rgba(213, 65, 62, 0.8);
 }
 
@@ -309,7 +311,7 @@ export default class CogPage extends Vue {
   transition: all 300ms ease;
 }
 
-@media (max-width: var(--mobile)) {
+@media (max-width: 767px) {
   .report_types {
     flex-direction: column;
   }
@@ -342,5 +344,22 @@ export default class CogPage extends Vue {
 .fade-enter-to,
 .fade-leave {
   opacity: 1;
+}
+</style>
+
+<style>
+.text p a {
+  color: var(--lred);
+  text-decoration: underline;
+  text-decoration-color: rgba(213, 65, 62, 0);
+  transition: text-decoration-color 150ms ease;
+}
+
+.text p a:visited {
+  color: var(--grey);
+}
+
+.text p a:hover {
+  text-decoration-color: rgba(213, 65, 62, 0.8);
 }
 </style>
