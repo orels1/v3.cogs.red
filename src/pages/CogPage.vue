@@ -1,6 +1,6 @@
 <template lang="pug">
   .CogPage
-    Databar(:source="cog" type="cog")
+    Databar(:source="cog" type="cog" :onReportClick="showReportModal")
     Loader(v-if="!loaded")
     .CogPage_inner(v-if="loaded")
       Infobar(
@@ -121,12 +121,15 @@ export default class CogPage extends Vue {
 
   async report() {
     const { params } = this.$route;
-    const resp = await fetch(`${c.COGS}/${params.user}/${params.repo}/${params.cog}/${params.branch}/report`, {
+    const resp = await fetch(`${c.REPORTS}/${params.user}/${params.repo}/${params.branch}/${params.cog}`, {
       method: 'POST',
       body: JSON.stringify({
         type: this.selectedType,
         comment: this.reportComment,
       }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
     this.reportModal = false;
     this.selectedType = null;

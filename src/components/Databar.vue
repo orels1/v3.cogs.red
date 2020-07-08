@@ -27,7 +27,7 @@
             |[v{{source.version || source.botVersion[0]}}]
         .tags(v-if="type !== 'user' && source.tags.length > 0")
           .report(@click="scrollToReport")
-            .report_text(:class="reportVisible && 'shown'") report cog
+            .report_text(:class="reportVisible && 'shown'") {{reportText}}
             font-awesome-icon.tags_icon.report_icon(
               v-if="type === 'cog'"
               :icon="['fal', 'comment-alt-exclamation']"
@@ -51,10 +51,12 @@ import Badge from '@/components/Badge';
   props: {
     source: Object,
     type: String,
+    onReportClick: Function,
   },
 })
 export default class Databar extends Vue {
   reportVisible = false;
+  reportClicked = false;
 
   crumbsDepth = {
     cog: 4,
@@ -66,8 +68,13 @@ export default class Databar extends Vue {
     return this.type !== 'user' && this.source.tags.length > 0;
   }
 
+  get reportText() {
+    return this.reportClicked ? 'see below' : 'report cog';
+  }
+
   /* eslint-disable class-methods-use-this */
   scrollToReport() {
+    this.reportClicked = true;
     const reportBlock = document.querySelector('#report');
     if (reportBlock) {
       window.scrollTo({
@@ -75,6 +82,12 @@ export default class Databar extends Vue {
         behavior: 'smooth',
       });
     }
+    if (this.onReportClick) {
+      this.onReportClick();
+    }
+    setTimeout(() => {
+      this.reportClicked = false;
+    }, 2000);
   }
   /* eslint-enable class-methods-use-this */
 }

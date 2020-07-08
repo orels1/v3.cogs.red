@@ -2,11 +2,6 @@
 <p align="center">
   <strong>v3 frontend for cogs.red</strong>
 </p>
-<p align="center">
-  <a href="https://snyk.io/test/github/orels1/v3.cogs.red?targetFile=package.json">
-    <img src="https://snyk.io/test/github/orels1/v3.cogs.red/badge.svg?targetFile=package.json&style=flat-square" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/github/orels1/v3.cogs.red?targetFile=package.json" style="max-width:100%;">
-  </a>
-</p>
 
 <p align="center">
   <sub>Built with ❤︎ by
@@ -15,6 +10,14 @@
     contributors
   </a>
 </p>
+
+# This project is frozen/discontinued, code provided for reference
+
+This is a dump of all the wip code written for the v3 of cogs.red. It is generally working, but some features are in an incomplete state.
+
+For more info, check out the last [status update post](https://orels.sh/whats-up-with-cogs-red).
+
+> One thing to note is to build this project you need a fortawesome configured account so that fortawesome packages can resolved. Just keep that in mind
 
 ## Contribution
 
@@ -48,3 +51,9 @@ yarn test
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+## License
+
+Copyright (c) 2020
+
+Licensed under the [MIT license](LICENSE).
